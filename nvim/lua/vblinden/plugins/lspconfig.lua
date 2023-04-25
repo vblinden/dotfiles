@@ -2,18 +2,23 @@
 require('mason').setup()
 require('mason-lspconfig').setup({ automatic_installation = true })
 
--- PHP
-require('lspconfig').intelephense.setup({})
+local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
+-- PHP
+require('lspconfig').intelephense.setup({ capabilities = capabilities })
+
+-- TODO: Use a different javascript/typescript language server
+-- TODO: What about deno?
 -- Volar
 require('lspconfig').volar.setup({
-    -- Enable "takeover" mode where volar will provide all JS/TS LSP services
-    -- This drastically improves the responsiveness of diagnostic updates on chagne
-    filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
-  })
+        capabilities = capabilities,
+        -- Enable "takeover" mode where volar will provide all JS/TS LSP services
+        -- This drastically improves the responsiveness of diagnostic updates on chagne
+        filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+    })
 
 -- Tailwind CSS
-require('lspconfig').tailwindcss.setup({})
+require('lspconfig').tailwindcss.setup({ capabilities = capabilities })
 
 vim.keymap.set('n', '<Leader>d', '<cmd>lua vim.diagnostic.open_float()<CR>')
 vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
@@ -24,13 +29,63 @@ vim.keymap.set('n', 'gr', ':Telescope lsp_references<CR>')
 vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>')
 vim.keymap.set('n', '<Leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>')
 
+-- JSON
+require('lspconfig').jsonls.setup({
+        capabilities = capabilities,
+        settings = {
+            json = {
+                schemas = require('schemastore').json.schemas(),
+            }
+        }
+    })
+
+require('null-ls').setup({
+  sources = {
+    require('null-ls').builtins.code_actions.eslint_d.with({
+      condition = function(utils)
+        return utils.root_has_file({ '.eslintrc.js' })
+      end,
+    }),
+    require('null-ls').builtins.code_actions.gitsigns,
+    require('null-ls').builtins.code_actions.proselint,
+    require('null-ls').builtins.diagnostics.eslint_d.with({
+      condition = function(utils)
+        return utils.root_has_file({ '.eslintrc.js' })
+      end,
+    }),
+    require('null-ls').builtins.diagnostics.proselint,
+    require('null-ls').builtins.diagnostics.gitlint,
+    require('null-ls').builtins.diagnostics.luacheck.with({
+      extra_args = { '--config', vim.fn.stdpath('config') .. '/.luacheckrc' },
+    }),
+    -- require("null-ls").builtins.diagnostics.phpstan,
+    require('null-ls').builtins.diagnostics.solhint,
+    require('null-ls').builtins.diagnostics.trail_space.with({ disabled_filetypes = { 'NvimTree' } }),
+    require('null-ls').builtins.formatting.eslint_d.with({
+      condition = function(utils)
+        return utils.root_has_file({ '.eslintrc.js' })
+      end,
+    }),
+    require('null-ls').builtins.formatting.prettierd,
+    require('null-ls').builtins.formatting.phpcsfixer,
+    require('null-ls').builtins.formatting.jq,
+    require('null-ls').builtins.formatting.rustywind,
+    require('null-ls').builtins.formatting.stylua,
+  },
+})
+
+require('mason-null-ls').setup({ automatic_installation = true })
+
+-- Commands
+vim.api.nvim_create_user_command('Format', vim.lsp.buf.formatting_seq_sync, {})
+
 -- Diagnostic configuration
 vim.diagnostic.config({
-    virtual_text = false,
-    float = {
-      source = true,
-    }
-  })
+        virtual_text = false,
+        float = {
+            source = true,
+        }
+    })
 
 vim.fn.sign_define('DiagnosticSignError', { text = '', texthl = 'DiagnosticSignError' })
 vim.fn.sign_define('DiagnosticSignWarn', { text = '', texthl = 'DiagnosticSignWarn' })

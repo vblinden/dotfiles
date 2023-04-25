@@ -174,14 +174,14 @@ use({
   end,
 })
 
-use({
-  'akinsho/bufferline.nvim',
-  requires = 'kyazdani42/nvim-web-devicons',
-  after = 'onedark.nvim',
-  config = function()
-    require('vblinden/plugins/bufferline')
-  end,
-})
+-- use({
+--   'akinsho/bufferline.nvim',
+--   requires = 'kyazdani42/nvim-web-devicons',
+--   after = 'onedark.nvim',
+--   config = function()
+--     require('vblinden/plugins/bufferline')
+--   end,
+-- })
 
 -- Git integration
 use({
@@ -236,11 +236,15 @@ use({
     end,
   })
 
+-- Language Server Protocol
 use({
     'neovim/nvim-lspconfig',
     requires = {
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
+      'b0o/schemastore.nvim',
+      'jose-elias-alvarez/null-ls.nvim',
+      'jayp0521/mason-null-ls.nvim',
     },
     config = function()
       require('vblinden/plugins/lspconfig')
