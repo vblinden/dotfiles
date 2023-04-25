@@ -10,12 +10,12 @@ require('lspconfig').intelephense.setup({ capabilities = capabilities })
 -- TODO: Use a different javascript/typescript language server
 -- TODO: What about deno?
 -- Volar
-require('lspconfig').volar.setup({
-        capabilities = capabilities,
-        -- Enable "takeover" mode where volar will provide all JS/TS LSP services
-        -- This drastically improves the responsiveness of diagnostic updates on chagne
-        filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
-    })
+-- require('lspconfig').volar.setup({
+--         capabilities = capabilities,
+--         -- Enable "takeover" mode where volar will provide all JS/TS LSP services
+--         -- This drastically improves the responsiveness of diagnostic updates on chagne
+--         filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+--     })
 
 -- Tailwind CSS
 require('lspconfig').tailwindcss.setup({ capabilities = capabilities })
