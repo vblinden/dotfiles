@@ -248,7 +248,7 @@ use({
     'neovim/nvim-lspconfig',
     requires = {
       'williamboman/mason.nvim',
-      'willamboman/mason-lspconfig.nvim',
+      'williamboman/mason-lspconfig.nvim',
     },
     config = function()
       require('vblinden/plugins/lspconfig')
