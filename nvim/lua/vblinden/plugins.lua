@@ -196,15 +196,64 @@ use({
   'lewis6991/gitsigns.nvim',
   requires = 'nvim-lua/plenary.nvim',
   config = function()
-    require('gitsigns').setup({
-      sign_priority = 20,
-      on_attach = function(bufnr)
-        vim.keymap.set('n', ']h', "&diff ? ']c' : '<cmd>Gitsigns next_hunk<CR>'", { expr = true, buffer = bufnr })
-        vim.keymap.set('n', '[h', "&diff ? '[c' : '<cmd>Gitsigns prev_hunk<CR>'", { expr = true, buffer = bufnr })
-      end,
-    })
+    require('gitsigns').setup()
+    vim.keymap.set('n', ']h', ':Gitsigns next_hunk<CR>')
+    vim.keymap.set('n', '[h', ':Gitsigns prev_hunk<CR>')
+    vim.keymap.set('n', 'gs', ':Gitsigns stage_hunk<CR>')
+    vim.keymap.set('n', 'gS', ':Gitsigns undo_stage_hunk<CR>')
+    vim.keymap.set('n', 'gp', ':Gitsigns preview_hunk<CR>')
+    vim.keymap.set('n', 'Gp', ':Gitsigns blame_line<CR>')
   end,
 })
+
+-- SFTP Sync
+use {'kenn7/vim-arsync',
+    requires = {
+        {'prabirshrestha/async.vim'}
+    }
+}
+
+-- Git commands
+use({
+    'tpope/vim-fugitive',
+    requires = 'tpope/vim-rhubarb',
+  })
+
+-- Floating terminal
+use({
+    'voldikss/vim-floaterm',
+    config = function()
+      -- vim.g.floaterm_width = 0.8
+      vim.g.floaterm_height = 0.4
+      vim.g.floaterm_wintype = 'split'
+      vim.keymap.set('n', '<F1>', ':FloatermToggle<CR>')
+      vim.keymap.set('t', '<F1>', '<C-\\><C-n>:FloatermToggle<CR>')
+    end,
+  })
+
+-- Improved syntax highlighting
+use({
+    'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate',
+    requires = {
+      'JoosepAlviste/nvim-ts-context-commentstring',
+      'nvim-treesitter/nvim-treesitter-textobjects',
+    },
+    config = function()
+      require('vblinden.plugins.treesitter')
+    end,
+  })
+
+use({
+    'neovim/nvim-lspconfig',
+    requires = {
+      'williamboman/mason.nvim',
+      'willamboman/mason-lspconfig.nvim',
+    },
+    config = function()
+      require('vblinden/plugins/lspconfig')
+    end,
+  })
 
 -- Automatically set up your configuration after cloning packer.nvim
 -- Put this at the end after all plugins
