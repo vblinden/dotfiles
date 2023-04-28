@@ -4,6 +4,8 @@ require('mason-lspconfig').setup({ automatic_installation = true })
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
+require('lspconfig').denols.setup({})
+
 -- PHP
 require('lspconfig').intelephense.setup({ capabilities = capabilities })
 
@@ -27,6 +29,7 @@ vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>')
 vim.keymap.set('n', 'gi', ':Telescope lsp_implementations<CR>')
 vim.keymap.set('n', 'gr', ':Telescope lsp_references<CR>')
 vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>')
+vim.keymap.set('n', '<Leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>')
 vim.keymap.set('n', '<Leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>')
 
 -- JSON
@@ -77,7 +80,7 @@ require('null-ls').setup({
 require('mason-null-ls').setup({ automatic_installation = true })
 
 -- Commands
-vim.api.nvim_create_user_command('Format', vim.lsp.buf.formatting_seq_sync, {})
+-- vim.api.nvim_create_user_command('Format', vim.lsp.buf.formatting_seq_sync, {})
 
 -- Diagnostic configuration
 vim.diagnostic.config({

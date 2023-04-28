@@ -24,6 +24,7 @@ vim.keymap.set('v', 'p', '"_dP')
 -- Easy insertion of a trailing ; or , from insert mode.
 vim.keymap.set('i', ';;', '<Esc>A;')
 vim.keymap.set('i', ',,', '<Esc>A,')
+vim.keymap.set('i', '..', '<Esc>A.')
 
 -- Quickly clear search highlighting.
 vim.keymap.set('n', '<Leader>k', ':nohlsearch<CR>')
