@@ -236,38 +236,28 @@ use({
     end,
   })
 
--- Language Server Protocol
-use({
-    'neovim/nvim-lspconfig',
-    requires = {
-      'williamboman/mason.nvim',
-      'williamboman/mason-lspconfig.nvim',
-      'b0o/schemastore.nvim',
-      'jose-elias-alvarez/null-ls.nvim',
-      'jayp0521/mason-null-ls.nvim',
-    },
-    config = function()
-      require('vblinden/plugins/lspconfig')
-    end,
-  })
-
-use({
-  'hrsh7th/nvim-cmp',
+use {
+  'VonHeikemen/lsp-zero.nvim',
+  branch = 'v2.x',
   requires = {
-    'L3MON4D3/LuaSnip',
-    'hrsh7th/cmp-buffer',
-    'hrsh7th/cmp-cmdline',
-    'hrsh7th/cmp-nvim-lsp',
-    'hrsh7th/cmp-nvim-lsp-signature-help',
-    'hrsh7th/cmp-nvim-lua',
-    'jessarcher/cmp-path',
-    'onsails/lspkind-nvim',
-    'saadparwaiz1/cmp_luasnip',
+    -- LSP Support
+    {'neovim/nvim-lspconfig'},             -- Required
+    {                                      -- Optional
+      'williamboman/mason.nvim',
+      run = function()
+        pcall(vim.cmd, 'MasonUpdate')
+      end,
+    },
+    {'williamboman/mason-lspconfig.nvim'}, -- Optional
+
+    -- Autocompletion
+    {'hrsh7th/nvim-cmp'},     -- Required
+    {'hrsh7th/cmp-nvim-lsp'}, -- Required
+    {'L3MON4D3/LuaSnip'},     -- Required
   },
-  config = function()
-    require('vblinden.plugins.cmp')
-  end,
-})
+}
+
+require('vblinden.plugins.lspconfig')
 
 -- Automatically set up your configuration after cloning packer.nvim
 -- Put this at the end after all plugins

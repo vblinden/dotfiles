@@ -1,15 +1,15 @@
 vim.opt.expandtab = true
 vim.opt.shiftwidth = 2
-vim.opt.tabstop = 2 
+vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
-vim.opt.guicursor = "i:block"
+-- vim.opt.guicursor = "i:block"
 
 vim.opt.smartindent = true
 
 vim.opt.wrap = false
 
 vim.opt.number = true
-vim.opt.relativenumber = true
+-- vim.opt.relativenumber = true
 
 vim.opt.wildmode = "longest:full,full" -- complete the longest common match, and allow tabbing the results to fully complete theme
 
@@ -35,7 +35,7 @@ vim.opt.sidescrolloff = 8
 
 vim.opt.clipboard = "unnamedplus" -- Use system clipboard
 
--- vim.opt.confirm = true -- ask for confirmation instead of erroring
+vim.opt.confirm = true -- ask for confirmation instead of erroring
 
 vim.opt.signcolumn = 'yes:2'
 
