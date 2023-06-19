@@ -129,6 +129,18 @@ require('lazy').setup({
     },
   },
 
+--  {
+--    'rose-pine/neovim',
+--    name = 'rose-pine',
+--    priority = 1000,
+--    config = function()
+--      require('rose-pine').setup({
+--        variant = 'moon',
+--        disable_background = true,
+--      })
+--      vim.cmd.colorscheme 'rose-pine'
+--    end,
+--  },
   {
     -- Theme inspired by Atom
     'navarasu/onedark.nvim',
@@ -145,6 +157,7 @@ require('lazy').setup({
     opts = {
       options = {
         icons_enabled = false,
+        --theme = 'rose-pine',
         theme = 'onedark',
         component_separators = '|',
         section_separators = '',
