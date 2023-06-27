@@ -84,7 +84,7 @@ require('lazy').setup({
 
       -- Useful status updates for LSP
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { 'j-hui/fidget.nvim', opts = {} },
+      { 'j-hui/fidget.nvim', tag = 'legacy', opts = {} },
 
       -- Additional lua configuration, makes nvim stuff amazing!
       'folke/neodev.nvim',
@@ -129,18 +129,6 @@ require('lazy').setup({
     },
   },
 
---  {
---    'rose-pine/neovim',
---    name = 'rose-pine',
---    priority = 1000,
---    config = function()
---      require('rose-pine').setup({
---        variant = 'moon',
---        disable_background = true,
---      })
---      vim.cmd.colorscheme 'rose-pine'
---    end,
---  },
   {
     -- Theme inspired by Atom
     'navarasu/onedark.nvim',
@@ -157,7 +145,6 @@ require('lazy').setup({
     opts = {
       options = {
         icons_enabled = false,
-        --theme = 'rose-pine',
         theme = 'onedark',
         component_separators = '|',
         section_separators = '',
@@ -242,7 +229,7 @@ vim.o.breakindent = true
 -- Save undo history
 vim.o.undofile = true
 
--- Case insensitive searching UNLESS /C or capital in search
+-- Case-insensitive searching UNLESS \C or capital in search
 vim.o.ignorecase = true
 vim.o.smartcase = true
 
