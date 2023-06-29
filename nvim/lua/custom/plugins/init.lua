@@ -1,3 +1,3 @@
-vim.opt.scrolloff = 12 
+vim.opt.scrolloff = 12
 
 return {}
