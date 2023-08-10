@@ -1,7 +1,7 @@
 vim.opt.scrolloff = 12
 vim.opt.tabstop = 4
 vim.opt.wrap = false
-vim.opt.relativenumber = true
+--vim.opt.relativenumber = true
 vim.opt.scrolloff = 8
 
 vim.api.nvim_create_user_command('Rfinder',
