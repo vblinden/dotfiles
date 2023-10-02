@@ -95,10 +95,13 @@ require('lazy').setup({
 
   {
     -- Theme inspired by Atom
-    'drewtempelmeyer/palenight.vim',
+    'rose-pine/neovim',
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme 'palenight'
+      require('rose-pine').setup({
+        disable_italics = true,
+      })
+      vim.cmd.colorscheme 'rose-pine'
     end,
   },
 
@@ -109,7 +112,7 @@ require('lazy').setup({
     opts = {
       options = {
         icons_enabled = false,
-        theme = 'palenight',
+        theme = 'rose-pine',
         component_separators = '|',
         section_separators = '',
       },
@@ -398,7 +401,7 @@ end
 --  define the property 'filetypes' to the map in question.
 local servers = {
   -- clangd = {},
-  -- gopls = {},
+  gopls = {},
   -- pyright = {},
   rust_analyzer = {},
   tsserver = {},
