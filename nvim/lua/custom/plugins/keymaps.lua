@@ -2,6 +2,9 @@
 vim.keymap.set('n', '<leader>kt', ':Neotree source=filesystem toggle position=right<cr>', { desc = 'Toggle [T]ree' })
 vim.keymap.set('n', '<leader>ktr', ':Neotree reveal position=right<cr>', { desc = '[T]ree [R]eveal File' })
 
+-- Make up good keymap
+-- vim.keymap.set("x", "<leader>p", [["_dP]])
+
 -- General keymaps
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
 vim.keymap.set('n', '<C-u>', '<C-u>zz')
