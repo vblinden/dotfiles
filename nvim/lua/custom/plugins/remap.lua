@@ -13,6 +13,10 @@ vim.keymap.set('n', 'N', 'Nzzzv')
 -- When combining line, let cursor alone
 vim.keymap.set('n', 'J', 'mzJ`z')
 
+-- Move selection up or down
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+
 vim.keymap.set('n', '<leader>b', ':b#<cr>', { desc = 'Switch [B]uffer' })
 
 -- Telescope keymaps

@@ -94,14 +94,14 @@ require('lazy').setup({
   },
 
   {
-    -- Theme inspired by Atom
-    'rose-pine/neovim',
+    -- Theme 
+    'folke/tokyonight.nvim',
     priority = 1000,
     config = function()
-      require('rose-pine').setup({
-        disable_italics = true,
-      })
-      vim.cmd.colorscheme 'rose-pine'
+      -- require('tokyonight').setup({
+      -- })
+
+      vim.cmd.colorscheme 'tokyonight-storm'
     end,
   },
 
@@ -112,7 +112,7 @@ require('lazy').setup({
     opts = {
       options = {
         icons_enabled = false,
-        theme = 'rose-pine',
+        theme = 'tokyonight',
         component_separators = '|',
         section_separators = '',
       },
