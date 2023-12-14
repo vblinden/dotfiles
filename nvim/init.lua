@@ -347,6 +347,17 @@ vim.defer_fn(function()
   }
 end, 0)
 
+local treesitter_parser_config = require "nvim-treesitter.parsers".get_parser_configs()
+treesitter_parser_config.templ = {
+  install_info = {
+    url = "https://github.com/vrischmann/tree-sitter-templ.git",
+    files = {"src/parser.c", "src/scanner.c"},
+    branch = "master",
+  },
+}
+
+vim.treesitter.language.register('templ', 'templ')
+
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
@@ -414,6 +425,7 @@ local servers = {
   tsserver = {},
   intelephense = {},
   html = { filetypes = { 'html', 'twig', 'hbs' } },
+  templ = {},
 
   lua_ls = {
     Lua = {
