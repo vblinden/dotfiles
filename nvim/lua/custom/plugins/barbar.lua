@@ -5,7 +5,7 @@ return {
 	},
 	init = function() vim.g.barbar_auto_setup = false end,
 	opts = {
-		auto_hide = 4,
+		auto_hide = 3,
 		icons = {
 			filetype = {
 				enabled = false
