@@ -414,6 +414,7 @@ local servers = {
   tsserver = {},
   intelephense = {},
   html = { filetypes = { 'html', 'twig', 'hbs' } },
+  templ = {},
 
   lua_ls = {
     Lua = {
