@@ -2,6 +2,9 @@
 vim.keymap.set('n', '<leader>kt', ':Neotree source=filesystem toggle position=right<cr>', { desc = 'Toggle [T]ree' })
 vim.keymap.set('n', '<leader>ktr', ':Neotree reveal position=right<cr>', { desc = '[T]ree [R]eveal File' })
 
+-- Persistence keymappings
+vim.api.nvim_set_keymap("n", "<leader>rs", [[<cmd>lua require("persistence").load()<cr>]], { desc = '[R]estore [S]ession' })
+
 -- vim.keymap.set("x", "<leader>p", [["_dP]])
 
 -- General keymaps

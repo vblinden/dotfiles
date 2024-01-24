@@ -20,3 +20,8 @@ ln -s $DOTFILES/gitui $HOME/.config/gitui
 mkdir -p $HOME/.config/kitty
 rm -rf $HOME/.config/kitty
 ln -s $DOTFILES/kitty $HOME/.config/kitty
+
+# todo automate - https://github.com/mikker/wezterm-icon
+mkdir -p $HOME/.config/wezterm
+rm -rf $HOME/.config/wezterm
+ln -s $DOTFILES/wezterm $HOME/.config/wezterm
