@@ -7,7 +7,8 @@ return {
 	commit = "4ba9ac5",
 	init = function() vim.g.barbar_auto_setup = false end,
 	opts = {
-		auto_hide = 3,
+		auto_hide = 0,
+		animation = false,
 		icons = {
 			filetype = {
 				enabled = false

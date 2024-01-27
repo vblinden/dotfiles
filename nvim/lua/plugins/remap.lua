@@ -20,8 +20,6 @@ vim.keymap.set('n', 'J', 'mzJ`z')
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
-vim.keymap.set('n', '<leader>b', ':b#<cr>', { desc = 'Switch [B]uffer' })
-
 -- Telescope keymaps
 vim.keymap.set('n', '<leader>si', ':Telescope find_files hidden=true no_ignore=true<cr>', { desc = 'Find [I]nvisible' })
 
