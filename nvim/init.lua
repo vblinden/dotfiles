@@ -71,7 +71,7 @@ require('lazy').setup({
   },
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim',          opts = {} },
+  { 'folke/which-key.nvim',  opts = {} },
   {
     -- Adds git releated signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -94,7 +94,7 @@ require('lazy').setup({
   },
 
   {
-    -- Theme 
+    -- Theme
     'folke/tokyonight.nvim',
     priority = 1000,
     config = function()
@@ -136,10 +136,20 @@ require('lazy').setup({
   -- },
 
   -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim',         opts = {} },
+  { 'numToStr/Comment.nvim', opts = {} },
 
   -- Fuzzy Finder (files, lsp, etc)
-  { 'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' } },
+  {
+    'nvim-telescope/telescope.nvim',
+    branch = '0.1.x',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      { 'nvim-telescope/telescope-live-grep-args.nvim', version = '^1.0.0' },
+    },
+    config = function()
+      require('telescope').load_extension('live_grep_args')
+    end
+  },
 
   -- Fuzzy Finder Algorithm which requires local dependencies to be built.
   -- Only load if `make` is available. Make sure you have the system
@@ -252,6 +262,14 @@ require('telescope').setup {
       },
     },
   },
+  -- pickers = {
+  --   live_grep = {
+  --     file_ignore_patterns = { '.git' },
+  --     additional_args = function(_)
+  --       return { "--hidden", "--no-ignore" }
+  --     end
+  --   },
+  -- },
 }
 
 -- Enable telescope fzf native, if installed
@@ -411,12 +429,14 @@ end
 local servers = {
   -- clangd = {},
   gopls = {},
+  yamlls = {},
   -- pyright = {},
   rust_analyzer = {},
   tsserver = {},
+  tailwindcss = {},
   intelephense = {},
   html = { filetypes = { 'html', 'twig', 'hbs' } },
-  templ = {},
+  -- templ = {},
 
   lua_ls = {
     Lua = {
