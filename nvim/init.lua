@@ -99,13 +99,13 @@ require('lazy').setup({
     priority = 1000,
     config = function()
       require('rose-pine').setup({
-        variant = 'moon',
+        variant = 'main',
         styles = {
           italic = false,
         },
       })
 
-      vim.cmd.colorscheme 'rose-pine-moon'
+      vim.cmd.colorscheme 'rose-pine'
     end,
   },
 
