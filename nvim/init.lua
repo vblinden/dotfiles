@@ -95,17 +95,17 @@ require('lazy').setup({
 
   {
     -- Theme
-    'rose-pine/neovim',
+    'catppuccin/nvim',
     priority = 1000,
     config = function()
-      require('rose-pine').setup({
-        variant = 'main',
-        styles = {
-          italic = false,
-        },
-      })
+      -- require('rose-pine').setup({
+      --   variant = 'main',
+      --   styles = {
+      --     italic = false,
+      --   },
+      -- })
 
-      vim.cmd.colorscheme 'rose-pine'
+      vim.cmd.colorscheme 'catppuccin-frappe'
     end,
   },
 
