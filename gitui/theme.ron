@@ -3,4 +3,6 @@
     selection_fg: Some(White),
     cmdbar_bg: Some(DarkGray),
     disabled_fg: Some(White),
+    push_gauge_bg: Some(DarkGray),
+    push_gauge_fg: Some(White),
 )
