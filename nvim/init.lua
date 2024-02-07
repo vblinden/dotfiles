@@ -105,7 +105,7 @@ require('lazy').setup({
       --   },
       -- })
 
-      vim.cmd.colorscheme 'catppuccin-frappe'
+      vim.cmd.colorscheme 'catppuccin-macchiato'
     end,
   },
 
