@@ -23,6 +23,6 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 -- Telescope keymaps
 vim.keymap.set('n', '<leader>si', ':Telescope find_files hidden=true no_ignore=true<cr>', { desc = '[S]earch [I]nvisible' })
 -- vim.keymap.set('n', '<leader>gi', ':Telescope live_grep hidden=true no_ignore=true<cr>', { desc = '[G]rep [I]nvisible' })
-vim.keymap.set("n", "<leader>gi", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>")
+-- vim.keymap.set("n", "<leader>gi", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", { desc = '[G]rep [I]nvisible' })
 
 return {}
