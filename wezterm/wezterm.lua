@@ -15,7 +15,7 @@ config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }
 config.audible_bell = "Disabled"
 config.font_size = 16.0
 config.adjust_window_size_when_changing_font_size = false
-config.color_scheme = 'Catppuccin Macchiato'
+config.color_scheme = 'Catppuccin Frappe'
 config.use_fancy_tab_bar = false
 config.enable_tab_bar = false
 config.enable_scroll_bar = false
