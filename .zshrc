@@ -32,6 +32,7 @@ alias lg="gitui"
 alias search="rg -uuu"
 alias sail="[ -f sail ] && sh sail || sh vendor/bin/sail"
 alias artisan="php artisan"
+alias nvm="fnm"
 alias ai="ollama run mistral"
 alias kubeuxd="export KUBECONFIG=~/Code/kube/uxd.yml"
 
@@ -42,6 +43,9 @@ export PATH="$HOME/.local/bin":$PATH
 export PATH="$HOME/.composer/vendor/bin:$PATH"
 export PATH="/Users/vblinden/go/bin:$PATH"
 
+# FNM (fast node manager)
+eval "$(fnm env --use-on-cd)"
+
 # Herd injected PHP binary.
 export PATH="/Users/vblinden/Library/Application Support/Herd/bin/":$PATH
 
@@ -51,8 +55,3 @@ export HERD_PHP_82_INI_SCAN_DIR="/Users/vblinden/Library/Application Support/Her
 # Herd injected PHP 8.3 configuration.
 export HERD_PHP_83_INI_SCAN_DIR="/Users/vblinden/Library/Application Support/Herd/config/php/83/"
 
-# Herd injected NVM configuration
-export NVM_DIR="/Users/vblinden/Library/Application Support/Herd/config/nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-
-[[ -f "/Applications/Herd.app/Contents/Resources/config/shell/zshrc.zsh" ]] && builtin source "/Applications/Herd.app/Contents/Resources/config/shell/zshrc.zsh"

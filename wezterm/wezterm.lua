@@ -7,7 +7,7 @@ if wezterm.config_builder then
 end
 
 config.font = wezterm.font_with_fallback {
-	'JetBrainsMono Nerd Font',
+	'BerkeleyMono Nerd Font',
 	'nonicons',
 }
 
