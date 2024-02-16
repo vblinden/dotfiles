@@ -1,0 +1,58 @@
+# Path to your oh-my-zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+
+ZSH_THEME="robbyrussell"
+
+plugins=(git)
+
+source $ZSH/oh-my-zsh.sh
+
+# History settings.
+HISTFILE=$HOME/.zsh_history
+HISTSIZE=50000
+SAVEHIST=50000
+
+setopt INC_APPEND_HISTORY # Immediately append to history file:
+setopt EXTENDED_HISTORY # Record timestamp in history:
+setopt HIST_EXPIRE_DUPS_FIRST # Expire duplicate entries first when trimming history:
+setopt HIST_IGNORE_DUPS # Dont record an entry that was just recorded again:
+setopt HIST_IGNORE_ALL_DUPS # Delete old recorded entry if new entry is a duplicate:
+setopt HIST_FIND_NO_DUPS # Do not display a line previously found:
+setopt HIST_IGNORE_SPACE # Dont record an entry starting with a space:
+setopt HIST_SAVE_NO_DUPS # Dont write duplicate entries in the history file:
+setopt SHARE_HISTORY # Share history between all sessions:
+
+# Execute commands using history (e.g.: using !$) immediatel:
+unsetopt HIST_VERIFY
+
+export LANG=en_US.UTF-8
+
+alias vim="nvim"
+alias lg="gitui"
+alias search="rg -uuu"
+alias sail="[ -f sail ] && sh sail || sh vendor/bin/sail"
+alias artisan="php artisan"
+alias ai="ollama run mistral"
+alias kubeuxd="export KUBECONFIG=~/Code/kube/uxd.yml"
+
+source ~/.secrets
+
+# Add .local/bin to path.
+export PATH="$HOME/.local/bin":$PATH
+export PATH="$HOME/.composer/vendor/bin:$PATH"
+export PATH="/Users/vblinden/go/bin:$PATH"
+
+# Herd injected PHP binary.
+export PATH="/Users/vblinden/Library/Application Support/Herd/bin/":$PATH
+
+# Herd injected PHP 8.2 configuration.
+export HERD_PHP_82_INI_SCAN_DIR="/Users/vblinden/Library/Application Support/Herd/config/php/82/"
+
+# Herd injected PHP 8.3 configuration.
+export HERD_PHP_83_INI_SCAN_DIR="/Users/vblinden/Library/Application Support/Herd/config/php/83/"
+
+# Herd injected NVM configuration
+export NVM_DIR="/Users/vblinden/Library/Application Support/Herd/config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
+[[ -f "/Applications/Herd.app/Contents/Resources/config/shell/zshrc.zsh" ]] && builtin source "/Applications/Herd.app/Contents/Resources/config/shell/zshrc.zsh"
