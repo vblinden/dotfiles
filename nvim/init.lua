@@ -105,6 +105,10 @@ require('lazy').setup({
       --   },
       -- })
 
+      require('catppuccin').setup({
+        no_italic = true,
+      })
+
       vim.cmd.colorscheme 'catppuccin-frappe'
     end,
   },
