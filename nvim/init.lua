@@ -1,7 +1,3 @@
--- Disable netrw in favor of nvim-tree
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
@@ -97,9 +93,14 @@ vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnos
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
 
--- NvimTree keymaps
-vim.keymap.set("n", "<leader>kf", ":NvimTreeToggle<CR>", { desc = "Open [F]ileTree" })
-vim.keymap.set("n", "<leader>kfr", ":NvimTreeFindFile<CR>", { desc = "[F]ileTree [R]eveal" })
+-- Mini files keymaps
+vim.keymap.set("n", "<leader>kf", ":lua MiniFiles.open()<CR>", { desc = "Open [F]ileTree" })
+vim.keymap.set(
+	"n",
+	"<leader>kfr",
+	":lua MiniFiles.open(vim.api.nvim_buf_get_name(0))<CR>",
+	{ desc = "Open [F]ileTree and [R]eveal" }
+)
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <c-\><c-n>, which
@@ -575,6 +576,9 @@ require("lazy").setup({
 
 			-- Add/delete/replace surroundings (brackets, quotes, etc.)
 			require("mini.surround").setup()
+
+			-- Tree
+			require("mini.files").setup()
 		end,
 	},
 
@@ -628,25 +632,6 @@ require("lazy").setup({
 			--    - Incremental selection: Included with nvim-treesitter, see :help nvim-treesitter-incremental-selection-mod
 			--    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
 			--    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
-		end,
-	},
-
-	{
-		"nvim-tree/nvim-tree.lua",
-		config = function()
-			require("nvim-tree").setup({
-				view = {
-					side = "right",
-				},
-				renderer = {
-					icons = {
-						show = {
-							file = false,
-							folder = false,
-						},
-					},
-				},
-			})
 		end,
 	},
 })
