@@ -1,3 +1,7 @@
+-- Disable netrw in favor of nvim-tree
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
@@ -48,11 +52,7 @@ vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 -- Try out switching tabs
-vim.keymap.set("n", "<leader>1", ":b2<CR>")
-vim.keymap.set("n", "<leader>2", ":b3<CR>")
-vim.keymap.set("n", "<leader>3", ":b4<CR>")
-vim.keymap.set("n", "<leader>4", ":b5<CR>")
-vim.keymap.set("n", "<leader>5", ":b6<CR>")
+vim.keymap.set("n", "<leader>kt", "<Cmd>BufferPick<CR>")
 
 -- Sync clipboard between OS and Neovim.
 -- See `:help clipboard`
@@ -96,6 +96,10 @@ vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous dia
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
+
+-- NvimTree keymaps
+vim.keymap.set("n", "<leader>kf", ":NvimTreeToggle<CR>", { desc = "Open [F]ileTree" })
+vim.keymap.set("n", "<leader>kfr", ":NvimTreeFindFile<CR>", { desc = "[F]ileTree [R]eveal" })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <c-\><c-n>, which
@@ -571,10 +575,30 @@ require("lazy").setup({
 
 			-- Add/delete/replace surroundings (brackets, quotes, etc.)
 			require("mini.surround").setup()
-
-			-- Tabline
-			require("mini.tabline").setup()
 		end,
+	},
+
+	-- Tabs
+	{
+		"romgrk/barbar.nvim",
+		init = function()
+			vim.g.barbar_auto_setup = false
+		end,
+		opts = {
+
+			-- lazy.nvim will automatically call setup for you. put your options here, anything missing will use the default:
+			animation = false,
+			insert_at_end = true,
+			-- insert_at_start = true,
+			-- …etc.
+			icons = {
+				filetype = {
+					enabled = false,
+				},
+			},
+			letters = "123456789",
+		},
+		version = "^1.0.0", -- optional: only update when a new 1.x version is released
 	},
 
 	-- Sessions
@@ -604,6 +628,25 @@ require("lazy").setup({
 			--    - Incremental selection: Included with nvim-treesitter, see :help nvim-treesitter-incremental-selection-mod
 			--    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
 			--    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+		end,
+	},
+
+	{
+		"nvim-tree/nvim-tree.lua",
+		config = function()
+			require("nvim-tree").setup({
+				view = {
+					side = "right",
+				},
+				renderer = {
+					icons = {
+						show = {
+							file = false,
+							folder = false,
+						},
+					},
+				},
+			})
 		end,
 	},
 })
