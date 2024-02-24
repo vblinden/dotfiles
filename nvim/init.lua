@@ -4,12 +4,9 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- Set <space> as the leader key
--- See `:help vim.o`
-vim.o.hlsearch = false
-
--- Make line numbers default
-vim.wo.number = true
+-- Set highlight on search, but clear on pressing <Esc> in normal mode
+vim.opt.hlsearch = true
+vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
 -- Enable mouse mode
 vim.o.mouse = "a"
@@ -78,6 +75,18 @@ vim.o.termguicolors = true
 vim.o.splitright = true
 vim.o.splitbelow = true
 
+-- Sets how neovim will display certain whitespace in the editor.
+--  See :help 'list'
+--  and :help 'listchars'
+-- vim.opt.list = true
+-- vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+
+-- Preview substitutions live, as you type!
+vim.opt.inccommand = "split"
+
+-- Show which line your cursor is on
+vim.opt.cursorline = true
+
 -- [[ Basic Kymaps ]]
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
@@ -90,8 +99,8 @@ vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 -- Diagnostic keymaps
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
-vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
+vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
+vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics [Q]uickfix list" })
 
 -- Mini files keymaps
 vim.keymap.set("n", "<leader>kf", ":lua MiniFiles.open()<CR>", { desc = "Open [F]ileTree" })
@@ -106,6 +115,21 @@ vim.keymap.set(
 -- for people to discover. Otherwise, you normally need to press <c-\><c-n>, which
 -- is not what someone will guess without a bit more experience.
 vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Esc, esc exits terminal mode" })
+
+-- TIP: Disable arrow keys in normal mode
+-- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
+-- vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
+-- vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
+-- vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
+
+-- Keybinds to make split navigation easier.
+--  Use CTRL+<hjkl> to switch between windows
+--
+--  See `:help wincmd` for a list of all window commands
+vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
+vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
+vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
+vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
@@ -155,7 +179,7 @@ require("lazy").setup({
 			},
 			formatters_by_ft = {
 				lua = { "stylua" },
-				-- javascript = { { "prettier" } },
+				javascript = { { "prettierd", "prettier" } },
 			},
 		},
 	},
@@ -175,7 +199,6 @@ require("lazy").setup({
 				["<leader>h"] = { name = "Git [H]unk", _ = "which_key_ignore" },
 				["<leader>r"] = { name = "[R]ename", _ = "which_key_ignore" },
 				["<leader>s"] = { name = "[S]earch", _ = "which_key_ignore" },
-				["<leader>t"] = { name = "[T]oggle", _ = "which_key_ignore" },
 				["<leader>w"] = { name = "[W]orkspace", _ = "which_key_ignore" },
 			})
 		end,
@@ -383,6 +406,16 @@ require("lazy").setup({
 
 				-- Show the signature of the function you're currently completing.
 				nmap("<C-k>", vim.lsp.buf.signature_help, "Signature Documentation")
+
+				-- vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+				-- 	buffer = event.buf,
+				-- 	callback = vim.lsp.buf.document_highlight,
+				-- })
+				--
+				-- vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+				-- 	buffer = event.buf,
+				-- 	callback = vim.lsp.buf.clear_references,
+				-- })
 			end
 
 			-- LSP servers and clients are able to communicate to each other what features they support.
@@ -562,6 +595,9 @@ require("lazy").setup({
 			vim.cmd.colorscheme("tokyonight-night")
 		end,
 	},
+
+	-- Highlight todo, notes, etc in comments
+	{ "folke/todo-comments.nvim", dependencies = { "nvim-lua/plenary.nvim" }, opts = { signs = false } },
 
 	-- Collection of various small independent plugins/modules
 	{
