@@ -31,6 +31,12 @@ vim.opt.relativenumber = true
 vim.opt.number = true
 vim.opt.scrolloff = 8
 
+-- Backup
+vim.o.backup = true
+vim.o.backupdir = ".vim/backup/"
+vim.o.writebackup = true
+vim.o.backupcopy = "yes"
+
 -- Center when going page up and down
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
@@ -180,6 +186,7 @@ require("lazy").setup({
 			formatters_by_ft = {
 				lua = { "stylua" },
 				javascript = { { "prettierd", "prettier" } },
+				typescript = { { "prettierd", "prettier" } },
 				php = { { "php-cs-fixer", "phpcbf", "pint" } },
 			},
 		},

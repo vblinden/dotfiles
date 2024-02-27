@@ -23,3 +23,5 @@
 
 [merge]
 	autoStash = true
+	conflictstyle = diff3
+	tool = nvimdiff

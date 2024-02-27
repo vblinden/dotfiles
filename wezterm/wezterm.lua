@@ -6,10 +6,10 @@ if wezterm.config_builder then
 	config = wezterm.config_builder()
 end
 
-config.font = wezterm.font_with_fallback({
-	"BerkeleyMono",
-	"nonicons",
-})
+-- config.font = wezterm.font_with_fallback({
+-- 	"Berkeley Mono",
+-- 	"nonicons",
+-- })
 
 config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
 config.audible_bell = "Disabled"
