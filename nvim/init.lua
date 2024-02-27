@@ -93,6 +93,20 @@ vim.opt.inccommand = "split"
 -- Show which line your cursor is on
 vim.opt.cursorline = true
 
+vim.filetype.add({
+	extension = {
+		env = "conf",
+		templ = "templ",
+	},
+	filename = {
+		[".env"] = "conf",
+		["env"] = "conf",
+	},
+	pattern = {
+		["%.env%.[%w_.-]+"] = "conf",
+	},
+})
+
 -- [[ Basic Kymaps ]]
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
@@ -147,6 +161,24 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
+vim.api.nvim_create_user_command("FormatDisable", function(args)
+	if args.bang then
+		-- FormatDisable! will disable formatting just for this buffer
+		vim.b.disable_autoformat = true
+	else
+		vim.g.disable_autoformat = true
+	end
+end, {
+	desc = "Disable autoformat-on-save",
+	bang = true,
+})
+vim.api.nvim_create_user_command("FormatEnable", function()
+	vim.b.disable_autoformat = false
+	vim.g.disable_autoformat = false
+end, {
+	desc = "Re-enable autoformat-on-save",
+})
+
 -- [[ Install `lazy.nvim` plugin manager ]]
 -- See `:help lazy.nvim.txt'
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -179,10 +211,13 @@ require("lazy").setup({
 		"stevearc/conform.nvim",
 		event = "VeryLazy",
 		opts = {
-			format_on_save = {
-				timeout_ms = 500,
-				lsp_fallback = true,
-			},
+			format_on_save = function(bufnr)
+				-- Disable with a global or buffer-local variable
+				if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+					return
+				end
+				return { timeout_ms = 500, lsp_fallback = true }
+			end,
 			formatters_by_ft = {
 				lua = { "stylua" },
 				javascript = { { "prettierd", "prettier" } },
