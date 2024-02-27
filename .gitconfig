@@ -1,0 +1,25 @@
+[url "git@github.com:"]
+	insteadOf = https://github.com/
+
+[push]
+	autoSetupRemote = true
+
+[user]
+	name = vblinden
+	email = hello@vblinden.dev
+
+[core]
+	editor = vim
+	excludesfile = /Users/vblinden/.gitignore
+
+[pull]
+	rebase = true
+
+[init]
+	defaultBranch = main
+
+[rebase]
+	autoStash = true
+
+[merge]
+	autoStash = true
