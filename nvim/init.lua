@@ -695,7 +695,20 @@ require("lazy").setup({
 			--    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
 		end,
 	},
+
+	-- Sync files
+	{
+		"eshion/vim-sync",
+	},
+
+	{
+		"shumphrey/fugitive-gitlab.vim",
+	},
 })
+
+vim.g.fugitive_gitlab_domains = {
+	"gitlab.nl.team.blue",
+}
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
