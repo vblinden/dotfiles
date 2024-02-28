@@ -223,6 +223,7 @@ require("lazy").setup({
 				javascript = { { "prettierd", "prettier" } },
 				typescript = { { "prettierd", "prettier" } },
 				php = { { "php-cs-fixer", "phpcbf", "pint" } },
+				markdown = { "markdownlint" },
 			},
 		},
 	},
@@ -745,6 +746,15 @@ require("lazy").setup({
 
 	{
 		"shumphrey/fugitive-gitlab.vim",
+	},
+	{
+		"iamcco/markdown-preview.nvim",
+		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+		build = "cd app && yarn install",
+		init = function()
+			vim.g.mkdp_filetypes = { "markdown" }
+		end,
+		ft = { "markdown" },
 	},
 })
 
