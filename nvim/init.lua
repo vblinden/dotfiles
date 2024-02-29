@@ -216,13 +216,14 @@ require("lazy").setup({
 				if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
 					return
 				end
-				return { timeout_ms = 500, lsp_fallback = true }
+				return { timeout_ms = 1500, lsp_fallback = true }
 			end,
 			formatters_by_ft = {
 				lua = { "stylua" },
 				javascript = { { "prettierd", "prettier" } },
 				typescript = { { "prettierd", "prettier" } },
 				php = { { "php-cs-fixer", "phpcbf", "pint" } },
+				blade = { "blade-formatter" },
 				markdown = { "markdownlint" },
 			},
 		},
@@ -704,7 +705,7 @@ require("lazy").setup({
 					enabled = false,
 				},
 			},
-			letters = "123456789",
+			-- letters = "123456789",
 		},
 		version = "^1.0.0", -- optional: only update when a new 1.x version is released
 	},
@@ -720,6 +721,23 @@ require("lazy").setup({
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
 		config = function()
+			local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+
+			parser_config.blade = {
+				install_info = {
+					url = "https://github.com/EmranMR/tree-sitter-blade",
+					files = { "src/parser.c" },
+					branch = "main",
+				},
+				filetype = "blade",
+			}
+
+			vim.filetype.add({
+				pattern = {
+					[".*%.blade%.php"] = "blade",
+				},
+			})
+
 			-- [[ Configure Treesitter ]] See `:help nvim-treesitter`
 
 			---@diagnostic disable-next-line: missing-fields
@@ -728,6 +746,12 @@ require("lazy").setup({
 				auto_install = true,
 				highlight = { enable = true },
 				indent = { enable = true },
+				ensure_installed = {
+					"html",
+					"php_only",
+					"php",
+					"bash",
+				},
 			})
 
 			-- There are additional nvim-treesitter modules that you can use to interact
