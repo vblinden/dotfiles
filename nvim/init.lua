@@ -1,6 +1,4 @@
 -- Set <space> as the leader key
--- See `:help mapleader`
---  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
@@ -54,7 +52,6 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 vim.keymap.set("n", "<leader>kt", "<Cmd>BufferPick<CR>")
 
 -- Sync clipboard between OS and Neovim.
--- See `:help clipboard`
 vim.o.clipboard = "unnamedplus"
 
 -- Enable break indent
@@ -74,20 +71,13 @@ vim.wo.signcolumn = "yes"
 vim.o.updatetime = 250
 vim.o.timeoutlen = 300
 
--- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
 
 -- Configure how new split should be opened
 vim.o.splitright = true
 vim.o.splitbelow = true
 
--- Sets how neovim will display certain whitespace in the editor.
---  See :help 'list'
---  and :help 'listchars'
--- vim.opt.list = true
--- vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
-
--- Preview substitutions live, as you type!
+-- Preview substitutions live
 vim.opt.inccommand = "split"
 
 -- Show which line your cursor is on
@@ -109,7 +99,6 @@ vim.filetype.add({
 
 -- [[ Basic Kymaps ]]
 -- Keymaps for better default experience
--- See `:help vim.keymap.set()`
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 
 -- Remap for dealing with word wrap
@@ -136,23 +125,20 @@ vim.keymap.set(
 -- is not what someone will guess without a bit more experience.
 vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Esc, esc exits terminal mode" })
 
--- TIP: Disable arrow keys in normal mode
--- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
--- vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
--- vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
--- vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
+-- Disable arrow keys in normal mode
+vim.keymap.set("n", "<left>", '<cmd>echo "Use h to move!!"<CR>')
+vim.keymap.set("n", "<right>", '<cmd>echo "Use l to move!!"<CR>')
+vim.keymap.set("n", "<up>", '<cmd>echo "Use k to move!!"<CR>')
+vim.keymap.set("n", "<down>", '<cmd>echo "Use j to move!!"<CR>')
 
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
---
---  See `:help wincmd` for a list of all window commands
 vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
 vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
 vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
 -- [[ Highlight on yank ]]
--- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {
 	group = highlight_group,
@@ -161,6 +147,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
+-- [[ Enable and disable formatting at will ]]
 vim.api.nvim_create_user_command("FormatDisable", function(args)
 	if args.bang then
 		-- FormatDisable! will disable formatting just for this buffer
@@ -180,7 +167,6 @@ end, {
 })
 
 -- [[ Install `lazy.nvim` plugin manager ]]
--- See `:help lazy.nvim.txt'
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
 	vim.fn.system({
@@ -195,9 +181,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- [[ Configure pluins ]]
--- NOTE: You can configure plugins using the `config` key.
--- You can also configure plugins after the setup call, as
--- they will be available in your neovim runtime.
 require("lazy").setup({
 	-- Detect tabstop and shiftwidth automatically
 	"tpope/vim-sleuth",

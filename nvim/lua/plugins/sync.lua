@@ -1,3 +1,0 @@
-return {
-	"eshion/vim-sync",
-}
