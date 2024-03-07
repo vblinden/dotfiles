@@ -6,6 +6,8 @@ vim.g.maplocalleader = " "
 vim.opt.hlsearch = true
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
+vim.g.copilot_no_tab_map = true
+
 -- Enable mouse mode
 vim.o.mouse = "a"
 
@@ -35,7 +37,7 @@ vim.o.backupdir = ".vim/backup/"
 vim.o.writebackup = true
 vim.o.backupcopy = "yes"
 
--- Center when going page up and down
+-- Center when going page up and down or searching
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
@@ -82,6 +84,10 @@ vim.opt.inccommand = "split"
 
 -- Show which line your cursor is on
 vim.opt.cursorline = true
+
+-- Spelling
+-- vim.opt.spell = true
+-- vim.opt.spelllang = { "en_us" }
 
 vim.filetype.add({
 	extension = {
@@ -634,17 +640,14 @@ require("lazy").setup({
 	},
 
 	-- Colorscheme
-	{ -- You can easily change to a different colorscheme.
-		-- Change the name of the colorscheme plugin below, and then
-		-- change the command in the config to whatever the name of that colorscheme is
-		--
-		-- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`
+	{
 		"folke/tokyonight.nvim",
 		lazy = false, -- make sure we load this during startup if it is your main colorscheme
 		priority = 1000, -- make sure to load this before all the other start plugins
 		config = function()
 			-- load the colorscheme here
-			vim.cmd.colorscheme("tokyonight-night")
+			vim.o.background = "dark"
+			vim.cmd.colorscheme("tokyonight")
 		end,
 	},
 
@@ -754,6 +757,17 @@ require("lazy").setup({
 	{
 		"shumphrey/fugitive-gitlab.vim",
 	},
+
+	{
+		"github/copilot.vim",
+		config = function()
+			vim.keymap.set("i", "<C-y>", 'copilot#Accept("\\<CR>")', {
+				expr = true,
+				replace_keycodes = false,
+			})
+		end,
+	},
+
 	{
 		"iamcco/markdown-preview.nvim",
 		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
