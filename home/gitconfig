@@ -25,3 +25,5 @@
 	autoStash = true
 	conflictstyle = diff3
 	tool = nvimdiff
+[rerere]
+	enabled = true
