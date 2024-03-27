@@ -10,15 +10,10 @@ alias nvm "fnm"
 alias search "rg -uuu"
 alias ai "ollama run gemma"
 
-fish_add_path "~/.local/bin"
-fish_add_path "~/.composer/vendor/bin"
-fish_add_path "~/go/bin"
+fish_add_path "/Users/vblinden/.local/bin"
+fish_add_path "/Users/vblinden/.composer/vendor/bin"
+fish_add_path "/Users/vblinden/go/bin"
 
 eval "$(fnm env --use-on-cd)"
-
-# Add Herd to the path
-fish_add_path "/Users/vblinden/Library/Application Support/Herd/bin"
-fish_add_path "/Users/vblinden/Library/Application Support/Herd/config/php/82"
-fish_add_path "/Users/vblinden/Library/Application Support/Herd/config/php/83"
 
 source ~/.secrets

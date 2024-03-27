@@ -40,4 +40,4 @@ SETUVAR fish_pager_color_selected_background:\x2d\x2dbackground\x3d333
 SETUVAR fish_pager_color_selected_completion:\x1d
 SETUVAR fish_pager_color_selected_description:\x1d
 SETUVAR fish_pager_color_selected_prefix:\x1d
-SETUVAR fish_user_paths:/Users/vblinden/Library/Application\x20Support/Herd/config/php/83\x1e/Users/vblinden/Library/Application\x20Support/Herd/config/php/82\x1e/Users/vblinden/Library/Application\x20Support/Herd/bin\x1e/Users/vblinden/\x2elocal/bin\x1e/Users/vblinden/go/bin\x1e/opt/homebrew/sbin\x1e/opt/homebrew/bin
+SETUVAR fish_user_paths:/Users/vblinden/\x2ecomposer/vendor/bin\x1e/Users/vblinden/Library/Application\x20Support/Herd/config/php/83\x1e/Users/vblinden/Library/Application\x20Support/Herd/config/php/82\x1e/Users/vblinden/Library/Application\x20Support/Herd/bin\x1e/Users/vblinden/\x2elocal/bin\x1e/Users/vblinden/go/bin\x1e/opt/homebrew/sbin\x1e/opt/homebrew/bin
