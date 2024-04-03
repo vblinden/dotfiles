@@ -2,7 +2,7 @@
 
 DOTFILES=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
 
-# TODO: Install fish shell 
+# TODO: Install shell 
 
 rm -rf $HOME/.config/fish
 ln -s $DOTFILES/fish $HOME/.config/fish
