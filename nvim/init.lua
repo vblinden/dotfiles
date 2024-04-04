@@ -83,7 +83,7 @@ vim.o.splitbelow = true
 vim.opt.inccommand = "split"
 
 -- Show which line your cursor is on
-vim.opt.cursorline = false
+vim.opt.cursorline = true
 
 -- Spelling
 -- vim.opt.spell = true
@@ -647,22 +647,13 @@ require("lazy").setup({
 
 	-- Colorscheme
 	{
-		"navarasu/onedark.nvim",
+		"folke/tokyonight.nvim",
 		lazy = false, -- make sure we load this during startup if it is your main colorscheme
 		priority = 1000, -- make sure to load this before all the other start plugins
 		config = function()
-			require("onedark").setup({
-				code_style = {
-					comments = "none",
-					keywords = "none",
-					functions = "none",
-					strings = "none",
-					variables = "none",
-				},
-			})
 			-- load the colorscheme here
 			vim.o.background = "dark"
-			vim.cmd.colorscheme("onedark")
+			vim.cmd.colorscheme("tokyonight")
 		end,
 	},
 
@@ -695,6 +686,7 @@ require("lazy").setup({
 			vim.g.barbar_auto_setup = false
 		end,
 		opts = {
+
 			-- lazy.nvim will automatically call setup for you. put your options here, anything missing will use the default:
 			animation = false,
 			insert_at_end = true,
