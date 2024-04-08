@@ -6,8 +6,9 @@ if wezterm.config_builder then
 end
 
 config.color_scheme = "Tokyo Night Storm"
+-- config.color_scheme = "Catppuccin Macchiato"
 -- config.font_size = 16.0
--- config.line_height = 1.15
+-- config.line_height = 1.16
 config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
 
 config.audible_bell = "Disabled"
