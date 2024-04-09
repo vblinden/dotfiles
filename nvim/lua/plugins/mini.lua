@@ -21,6 +21,10 @@ return {
 		require("mini.surround").setup()
 
 		-- Tree
-		require("mini.files").setup()
+		require("mini.files").setup({
+			mappings = {
+				close = "<Esc>",
+			},
+		})
 	end,
 }
