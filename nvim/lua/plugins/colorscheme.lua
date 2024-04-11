@@ -14,6 +14,10 @@ return {
 -- 	name = "catppuccin",
 -- 	priority = 1000,
 -- 	config = function()
--- 		vim.cmd.colorscheme("catppuccin-macchiato")
+-- 		require("catppuccin").setup({
+-- 			no_italic = true,
+-- 		})
+--
+-- 		vim.cmd.colorscheme("catppuccin-frappe")
 -- 	end,
 -- }
