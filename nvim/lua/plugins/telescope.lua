@@ -28,7 +28,8 @@ return {
 						["<C-d>"] = false,
 					},
 				},
-				layout_strategy = "vertical",
+				layout_strategy = "horizontal",
+				-- layout_config = { mirror = true },
 			},
 			pickers = {
 				buffers = {
