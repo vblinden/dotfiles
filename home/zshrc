@@ -1,4 +1,4 @@
-zmodload zsh/zprof
+# zmodload zsh/zprof
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -33,15 +33,25 @@ alias vim="nvim"
 alias lg="gitui"
 alias search="rg -uuu"
 alias nvm="fnm"
-alias kubeuxd="export KUBECONFIG=~/Code/kube/uxd.yml"
 
-source ~/.secrets
+# We are on macOS...
+if [[ $(uname) == "Darwin" ]]; then
+	source ~/.secrets
 
-# Add .local/bin to path.
-export PATH="$HOME/.local/bin":$PATH
-export PATH="$HOME/.composer/vendor/bin:$PATH"
-export PATH="/Users/vblinden/go/bin:$PATH"
+	alias kubeuxd="export KUBECONFIG=~/Code/kube/uxd.yml"
+
+	export PATH="$HOME/.local/bin":$PATH
+	export PATH="$HOME/.composer/vendor/bin:$PATH"
+	export PATH="/Users/vblinden/go/bin:$PATH"
+
+# We are on Pop!_OS
+elif command -v apt > /dev/null; then
+        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+# Unknown OS...
+else
+    echo 'Unknown OS!'
+fi
 
 # FNM (fast node manager)
 eval "$(fnm env --use-on-cd)"
-
