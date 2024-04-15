@@ -7,6 +7,7 @@ end
 
 -- config.color_scheme = "Tokyo Night Storm"
 config.color_scheme = "OneDark (base16)"
+config.font = wezterm.font("JetBrains Mono", { bold = false, italic = false })
 -- config.font_size = 16.0
 -- config.line_height = 1.16
 config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }

@@ -22,9 +22,9 @@ return {
 
 		-- Tree
 		require("mini.files").setup({
-			mappings = {
-				close = "<Esc>",
-			},
+			-- mappings = {
+			-- 	close = "<Esc>",
+			-- },
 		})
 	end,
 }
