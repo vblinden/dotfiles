@@ -7,6 +7,9 @@ end
 
 -- config.color_scheme = "Tokyo Night Storm"
 config.color_scheme = "OneDark (base16)"
+-- config.colors = {}
+-- config.colors.background = "#111111"
+
 config.font = wezterm.font("JetBrains Mono", { bold = false, italic = false })
 -- config.font_size = 16.0
 -- config.line_height = 1.16
@@ -15,6 +18,7 @@ config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
 config.audible_bell = "Disabled"
 config.adjust_window_size_when_changing_font_size = false
 config.enable_tab_bar = false
+config.enable_scroll_bar = false
 
 config.window_padding = {
 	left = 0,

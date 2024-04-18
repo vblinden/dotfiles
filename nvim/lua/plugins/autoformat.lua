@@ -34,6 +34,7 @@ return {
 			typescript = { { "prettierd", "prettier" } },
 			php = { { "php-cs-fixer", "phpcbf", "pint" } },
 			blade = { "blade-formatter" },
+			twig = { "twig-cs-fixer" },
 			markdown = { "markdownlint" },
 		},
 	},
