@@ -5,10 +5,7 @@ if wezterm.config_builder then
 	config = wezterm.config_builder()
 end
 
--- config.color_scheme = "Tokyo Night Storm"
-config.color_scheme = "OneDark (base16)"
--- config.colors = {}
--- config.colors.background = "#111111"
+config.color_scheme = "Tokyo Night Storm"
 
 config.font = wezterm.font("JetBrains Mono", { bold = false, italic = false })
 -- config.font_size = 16.0

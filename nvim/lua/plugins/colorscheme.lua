@@ -1,29 +1,17 @@
--- return {
--- 	"folke/tokyonight.nvim",
--- 	lazy = false, -- make sure we load this during startup if it is your main colorscheme
--- 	priority = 1000, -- make sure to load this before all the other start plugins
--- 	config = function()
--- 		-- load the colorscheme here
--- 		vim.o.background = "dark"
--- 		vim.cmd.colorscheme("tokyonight")
--- 	end,
--- }
-
 return {
-	"navarasu/onedark.nvim",
-	name = "onedark",
+	"folke/tokyonight.nvim",
+	lazy = false,
 	priority = 1000,
 	config = function()
-		require("onedark").setup({
-			code_style = {
-				comments = "none",
-				keywords = "none",
-				functions = "none",
-				strings = "none",
-				variables = "none",
+		require("tokyonight").setup({
+			style = "storm",
+			light_style = "day",
+			styles = {
+				comments = { italic = false },
+				keywords = { italic = false },
 			},
 		})
 
-		vim.cmd.colorscheme("onedark")
+		vim.cmd.colorscheme("tokyonight-storm")
 	end,
 }
