@@ -4,3 +4,4 @@
 .vim/
 .vim-arsync
 .sync
+.twig-cs-fixer.cache
