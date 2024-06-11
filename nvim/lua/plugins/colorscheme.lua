@@ -1,17 +1,10 @@
 return {
-	"folke/tokyonight.nvim",
+	"catppuccin/nvim",
 	lazy = false,
 	priority = 1000,
 	config = function()
-		require("tokyonight").setup({
-			style = "storm",
-			light_style = "day",
-			styles = {
-				comments = { italic = false },
-				keywords = { italic = false },
-			},
-		})
+		require("catppuccin").setup({})
 
-		vim.cmd.colorscheme("tokyonight-storm")
+		vim.cmd.colorscheme("catppuccin-frappe")
 	end,
 }
