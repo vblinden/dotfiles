@@ -2,10 +2,16 @@
 
 DOTFILES=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
 
-# TODO: Install oh-my-zsh shell 
+# TODO: Install oh-my-zsh shell
 
 rm -rf $HOME/.zshrc
 ln -s $DOTFILES/home/zshrc $HOME/.zshrc
+
+rm -rf $HOME/.yabairc
+ln -s $DOTFILES/home/yabairc $HOME/.yabairc
+
+rm -rf $HOME/skhd
+ln -s $DOTFILES/home/skhd $HOME/.config/skhd
 
 rm -rf $HOME/.gitconfig
 ln -s $DOTFILES/home/gitconfig $HOME/.gitconfig

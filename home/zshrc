@@ -44,7 +44,7 @@ if [[ $(uname) == "Darwin" ]]; then
 	export PATH="$HOME/.composer/vendor/bin:$PATH"
 	export PATH="/Users/vblinden/go/bin:$PATH"
 
-# We are on Pop!_OS
+# We are on Linux... 
 elif command -v apt > /dev/null; then
         eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
@@ -55,3 +55,23 @@ fi
 
 # FNM (fast node manager)
 eval "$(fnm env --use-on-cd)"
+
+# FZF
+eval "$(fzf --zsh)"
+
+# -- Use fd instead of fzf --
+export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
+
+# Use fd (https://github.com/sharkdp/fd) for listing path candidates.
+# - The first argument to the function ($1) is the base path to start traversal
+# - See the source code (completion.{bash,zsh}) for the details.
+_fzf_compgen_path() {
+  fd --hidden --exclude .git . "$1"
+}
+
+# Use fd to generate the list for directory completion
+_fzf_compgen_dir() {
+  fd --type=d --hidden --exclude .git . "$1"
+}
