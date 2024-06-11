@@ -1,9 +1,9 @@
 (
-    selection_bg: Some(DarkGray),
-    selection_fg: Some(White),
-    cmdbar_bg: Some(DarkGray),
-    cmdbar_extra_lines_bg: Some(DarkGray),
-    disabled_fg: Some(White),
-    push_gauge_bg: Some(DarkGray),
-    push_gauge_fg: Some(White),
+    selection_bg: Some("DarkGray"),
+    selection_fg: Some("White"),
+    cmdbar_bg: Some("DarkGray"),
+    cmdbar_extra_lines_bg: Some("DarkGray"),
+    disabled_fg: Some("White"),
+    push_gauge_bg: Some("DarkGray"),
+    push_gauge_fg: Some("White"),
 )
