@@ -7,7 +7,7 @@ end
 
 config.color_scheme = "Catppuccin Frappe"
 
-config.font = wezterm.font("Menlo", { bold = false, italic = false })
+config.font = wezterm.font("Cascadia Mono", { bold = false, italic = false })
 -- config.font = wezterm.font("Berkeley Mono", { bold = false, italic = false })
 -- config.font = wezterm.font("JetBrains Mono", { bold = false, italic = false })
 -- config.font = wezterm.font("Iosevka", { bold = false, italic = false })

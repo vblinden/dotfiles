@@ -38,7 +38,8 @@ alias nvm="fnm"
 if [[ $(uname) == "Darwin" ]]; then
 	source ~/.secrets
 
-	alias kubeuxd="export KUBECONFIG=~/Code/kube/uxd.yml"
+	alias kube-uxd="export KUBECONFIG=~/Code/kube/uxd.yml"
+	alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
 
 	export PATH="$HOME/.local/bin":$PATH
 	export PATH="$HOME/.composer/vendor/bin:$PATH"

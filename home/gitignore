@@ -1,6 +1,7 @@
 .DS_Store
 .idea/
 .vscode/
+.zed/
 .vim/
 .vim-arsync
 .sync
