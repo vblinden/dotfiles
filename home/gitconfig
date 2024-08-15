@@ -17,7 +17,7 @@
 	rebase = true
 
 [init]
-	defaultBranch = main
+	defaultBranch = master
 
 [rebase]
 	autoStash = true
@@ -26,5 +26,6 @@
 	autoStash = true
 	conflictstyle = diff3
 	tool = nvimdiff
+
 [rerere]
 	enabled = true
