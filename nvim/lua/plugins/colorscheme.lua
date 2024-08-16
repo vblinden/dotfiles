@@ -9,6 +9,7 @@ return {
 				which_key = true,
 				barbar = true,
 			},
+			no_italic = true,
 		})
 
 		vim.cmd.colorscheme("catppuccin-frappe")
