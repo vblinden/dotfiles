@@ -2,7 +2,11 @@
 
 DOTFILES=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
 
-# TODO: Install oh-my-zsh shell
+# Maximum key repeat rate
+defaults write NSGlobalDomain KeyRepeat -int 0
+defaults write NSGlobalDomain InitialKeyRepeat -int 4
+
+# TODO: Auto install dependencies, oh-my-zsh, tmux, nvim, fzf, fnm, wezterm, gitui
 
 rm -rf $HOME/.zshrc
 ln -s $DOTFILES/home/zshrc $HOME/.zshrc
