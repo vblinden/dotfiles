@@ -16,7 +16,7 @@ rm -rf $HOME/.zshrc
 ln -s $DOTFILES/home/zshrc $HOME/.zshrc
 
 rm -rf $HOME/.aerospace.toml
-ln -s $DOTFILES/home/aerospace.toml $HOME/.aerospace.toml
+ln -s $DOTFILES/home/aerospace $HOME/.aerospace.toml
 
 rm -rf $HOME/.gitconfig
 ln -s $DOTFILES/home/gitconfig $HOME/.gitconfig
