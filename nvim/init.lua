@@ -37,6 +37,9 @@ vim.o.backupdir = ".vim/backup/"
 vim.o.writebackup = true
 vim.o.backupcopy = "yes"
 
+-- Control-C for insert mode
+vim.keymap.set("i", "<C-c>", "<Esc>")
+
 -- Center when going page up and down or searching
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
