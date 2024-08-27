@@ -4,7 +4,7 @@ DOTFILES=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
 
 # Maximum key repeat rate
 defaults write NSGlobalDomain KeyRepeat -int 2
-defaults write NSGlobalDomain InitialKeyRepeat -int 10
+defaults write NSGlobalDomain InitialKeyRepeat -int 12
 defaults write -g ApplePressAndHoldEnabled -bool false
 
 # Aerospace mission control fix
