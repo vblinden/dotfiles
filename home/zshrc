@@ -44,8 +44,9 @@ if [[ $(uname) == "Darwin" ]]; then
 	export PATH="$HOME/.local/bin":$PATH
 	export PATH="$HOME/.composer/vendor/bin:$PATH"
 	export PATH="/Users/vblinden/go/bin:$PATH"
+	export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 
-# We are on Linux... 
+# We are on Linux...
 elif command -v apt > /dev/null; then
         eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
@@ -76,3 +77,4 @@ _fzf_compgen_path() {
 _fzf_compgen_dir() {
   fd --type=d --hidden --exclude .git . "$1"
 }
+

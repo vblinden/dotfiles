@@ -8,6 +8,8 @@ vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
 vim.g.copilot_no_tab_map = true
 
+vim.g.have_nerd_font = false
+
 -- Enable mouse mode
 vim.o.mouse = "a"
 
@@ -86,7 +88,7 @@ vim.o.splitbelow = true
 vim.opt.inccommand = "split"
 
 -- Show which line your cursor is on
-vim.opt.cursorline = false
+vim.opt.cursorline = true
 
 -- Spelling
 -- vim.opt.spell = true
