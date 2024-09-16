@@ -17,7 +17,7 @@ nnoremap p p`]
 " have x (removes single character) not go into the default registry
 nnoremap x "_x
 
-" move lines up and down	
+" move lines up and down
 vnoremap <S-j> :m'>+<CR>gv=gv
 vnoremap <S-k> :m-2<CR>gv=gv
 
