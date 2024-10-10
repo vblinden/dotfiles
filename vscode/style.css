@@ -1,0 +1,11 @@
+* {
+    font-family: JetBrains Mono, monospace;
+}
+
+.statusbar {
+    font-family: JetBrains Mono, monospace;
+}
+
+.letterpress {
+    opacity: 0;
+}
