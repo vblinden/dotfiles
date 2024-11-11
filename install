@@ -2,13 +2,12 @@
 
 DOTFILES=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
 
+# TODO: Make difference for MacOS and Linux
+
 # Maximum key repeat rate
 defaults write NSGlobalDomain KeyRepeat -int 2
 defaults write NSGlobalDomain InitialKeyRepeat -int 12
 defaults write -g ApplePressAndHoldEnabled -bool false
-
-# Aerospace mission control fix
-defaults write com.apple.dock expose-group-apps -bool true && killall Dock
 
 # TODO: Auto install dependencies, oh-my-zsh, tmux, nvim, fzf, fnm, wezterm, gitui
 

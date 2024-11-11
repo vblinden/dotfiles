@@ -1,29 +1,5 @@
 if true then
-  return {
-    -- Disable clutter...
-    { "nvim-lualine/lualine.nvim", enabled = false },
-    { "folke/noice.nvim", enabled = false },
-    { "lukas-reineke/indent-blankline.nvim", enabled = false },
-
-    -- Use correct theme...
-    {
-      "catppuccin/nvim",
-      lazy = false,
-      priority = 1000,
-      config = function()
-        require("catppuccin").setup({
-          integrations = {
-            neotree = true,
-            which_key = true,
-            barbar = true,
-          },
-          no_italic = true,
-        })
-
-        vim.cmd.colorscheme("catppuccin-frappe")
-      end,
-    },
-  }
+  return {}
 end
 
 -- every spec file under the "plugins" directory will be loaded automatically by lazy.nvim
