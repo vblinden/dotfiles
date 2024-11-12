@@ -2,12 +2,12 @@
     font-family: "SF Pro";
 }
 
-.editor-container * {
+.statusbar * {
     font-family: "JetBrains Mono" !important;
 }
 
-.statusbar {
-    font-family: "JetBrains Mono", monospace;
+.editor-container * {
+    font-family: "JetBrains Mono" !important;
 }
 
 .letterpress {
