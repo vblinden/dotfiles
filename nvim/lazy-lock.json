@@ -2,6 +2,7 @@
   "CopilotChat.nvim": { "branch": "canary", "commit": "18d51754e9dc87d6b85f1e331c1fca0825384517" },
   "LazyVim": { "branch": "main", "commit": "0137a110c14e1d72b59dbb82ba804b568cdc5b18" },
   "SchemaStore.nvim": { "branch": "main", "commit": "5f0639d68cbea3ab8a9a24a51a5f984d86ea8438" },
+  "asyncrun.vim": { "branch": "master", "commit": "78dc9277f2b989553861ee7c35b640112d95e1b5" },
   "bufferline.nvim": { "branch": "main", "commit": "5cc447cb2b463cb499c82eaeabbed4f5fa6a0a44" },
   "catppuccin": { "branch": "main", "commit": "637d99e638bc6f1efedac582f6ccab08badac0c6" },
   "cmp-buffer": { "branch": "main", "commit": "3022dbc9166796b644a841a02de8dd1cc1d311fa" },
@@ -49,5 +50,6 @@
   "tokyonight.nvim": { "branch": "main", "commit": "ce91ba480070c95f40753e4663e32b4632ac6db3" },
   "trouble.nvim": { "branch": "main", "commit": "3dc00c0447c016cd43e03054c3d49436a1f2076d" },
   "ts-comments.nvim": { "branch": "main", "commit": "2002692ad1d3f6518d016550c20c2a890f0cbf0e" },
+  "vim-sync": { "branch": "master", "commit": "8456c148ee7a009b88285933ad12174f91a57c39" },
   "which-key.nvim": { "branch": "main", "commit": "68e37e12913a66b60073906f5d3f14dee0de19f2" }
 }

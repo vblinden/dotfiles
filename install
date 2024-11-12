@@ -10,6 +10,8 @@ defaults write NSGlobalDomain InitialKeyRepeat -int 12
 defaults write -g ApplePressAndHoldEnabled -bool false
 
 # TODO: Auto install dependencies, oh-my-zsh, tmux, nvim, fzf, fnm, wezterm, gitui
+# brew tap moritzsternemann/apple-fonts
+# brew install --cask font-sf-pro
 
 rm -rf $HOME/.zshrc
 ln -s $DOTFILES/home/zshrc $HOME/.zshrc

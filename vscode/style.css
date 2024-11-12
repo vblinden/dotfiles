@@ -1,9 +1,13 @@
 * {
-    font-family: Berkeley Mono, monospace;
+    font-family: "SF Pro";
+}
+
+.editor-container * {
+    font-family: "JetBrains Mono" !important;
 }
 
 .statusbar {
-    font-family: Berkeley Mono, monospace;
+    font-family: "JetBrains Mono", monospace;
 }
 
 .letterpress {
