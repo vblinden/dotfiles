@@ -1,15 +1,17 @@
 return {
-  {
-    "catppuccin/nvim",
-    config = {
-      no_italic = true,
-    },
-  },
+	"catppuccin/nvim",
+	lazy = false,
+	priority = 1000,
+	config = function()
+		require("catppuccin").setup({
+			integrations = {
+				neotree = true,
+				which_key = true,
+				barbar = true,
+			},
+			no_italic = true,
+		})
 
-  {
-    "LazyVim/LazyVim",
-    opts = {
-      colorscheme = "catppuccin-frappe",
-    },
-  },
+		vim.cmd.colorscheme("catppuccin-frappe")
+	end,
 }
