@@ -12,7 +12,7 @@ config.color_scheme = "Catppuccin Frappe"
 -- config.font = wezterm.font("JetBrains Mono", { bold = false, italic = false })
 -- config.font = wezterm.font("Iosevka", { bold = false, italic = false })
 
--- config.font_size = 16.0
+config.font_size = 12.0
 -- config.line_height = 1.28
 config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
 
