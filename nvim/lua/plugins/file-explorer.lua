@@ -14,11 +14,18 @@ return {
 	},
 	keys = {
 		{
+			"<leader>fr",
+			function()
+				require("neo-tree.command").execute({ reveal = true })
+			end,
+			desc = "Explorer NeoTree (reveal)",
+		},
+		{
 			"<leader>fe",
 			function()
 				require("neo-tree.command").execute({ toggle = true })
 			end,
-			desc = "Explorer NeoTree (Root Dir)",
+			desc = "Explorer NeoTree (root dir)",
 		},
 		{
 			"<leader>fE",

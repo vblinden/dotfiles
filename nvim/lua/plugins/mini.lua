@@ -1,11 +1,6 @@
 -- Mini files keymaps
--- vim.keymap.set("n", "<leader>kf", ":lua MiniFiles.open()<CR>", { desc = "Open [F]ileTree" })
--- vim.keymap.set(
--- 	"n",
--- 	"<leader>kfr",
--- 	":lua MiniFiles.open(vim.api.nvim_buf_get_name(0))<CR>",
--- 	{ desc = "Open [F]ileTree and [R]eveal" }
--- )
+-- vim.keymap.set("n", "<leader>er", ":lua MiniFiles.open()<CR>", { desc = "Open [E]xplorer in [R]oot" })
+-- vim.keymap.set("n", "<leader>e", ":lua MiniFiles.open(vim.api.nvim_buf_get_name(0))<CR>", { desc = "Open [E]plorer" })
 
 return {
 	"echasnovski/mini.nvim",
@@ -21,10 +16,6 @@ return {
 		require("mini.surround").setup()
 
 		-- -- Tree
-		-- require("mini.files").setup({
-		-- 	-- mappings = {
-		-- 	-- 	close = "<Esc>",
-		-- 	-- },
-		-- })
+		-- require("mini.files").setup({})
 	end,
 }
