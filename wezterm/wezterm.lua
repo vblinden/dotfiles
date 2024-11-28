@@ -11,10 +11,10 @@ end
 
 config.color_scheme = "Catppuccin Frappe"
 
--- config.font = wezterm.font_with_fallback({
--- 	"Berkeley Mono",
--- 	"nonicons",
--- })
+config.font = wezterm.font_with_fallback({
+	"Berkeley Mono",
+	"nonicons",
+})
 
 config.font_size = 16.0
 config.line_height = 1.28

@@ -1,12 +1,18 @@
+[user]
+  name = "vblinden"
+  email = "hello@vblinden.dev"
+
+[includeif "gitdir:~/Code/teamblue/"]
+  path = ~/Code/teamblue/.gitconfig
+
 [url "git@github.com:"]
 	insteadOf = https://github.com/
 
+[init]
+	defaultBranch = master
+
 [push]
 	autoSetupRemote = true
-
-[user]
-	name = vblinden
-	email = hello@vblinden.dev
 
 [core]
 	editor = vim
@@ -15,9 +21,6 @@
 
 [pull]
 	rebase = true
-
-[init]
-	defaultBranch = master
 
 [rebase]
 	autoStash = true
