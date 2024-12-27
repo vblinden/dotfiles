@@ -1,0 +1,5 @@
+font-size = 18
+theme = catppuccin-frappe
+adjust-cell-height = 20%
+font-family = BerkeleyMono Nerd Font
+confirm-close-surface = false

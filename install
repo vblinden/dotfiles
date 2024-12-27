@@ -42,6 +42,6 @@ mkdir -p $HOME/.config/gitui
 rm -rf $HOME/.config/gitui
 ln -s $DOTFILES/gitui $HOME/.config/gitui
 
-mkdir -p $HOME/.config/wezterm
-rm -rf $HOME/.config/wezterm
-ln -s $DOTFILES/wezterm $HOME/.config/wezterm
+mkdir -p $HOME/.config/ghostty
+rm -rf $HOME/.config/ghostty/config 
+ln -s $DOTFILES/ghostty/config $HOME/.config/ghostty/config
