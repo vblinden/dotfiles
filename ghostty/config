@@ -1,5 +1,8 @@
 font-size = 18
 theme = catppuccin-frappe
-adjust-cell-height = 20%
-font-family = BerkeleyMono Nerd Font
+adjust-cell-height = 35%
+# font-family = BerkeleyMono Nerd Font
+font-feature = -calt
 confirm-close-surface = false
+window-save-state = always
+window-padding-balance = true
