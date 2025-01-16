@@ -40,6 +40,9 @@ if [[ $(uname) == "Darwin" ]]; then
 
 	alias kube-uxd="export KUBECONFIG=~/Code/kube/uxd.yml"
 	alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
+	alias phpcsfixer='for file in $(git diff --name-only HEAD | grep "\.php$"); do vendor/bin/php-cs-fixer fix "$file"; done'
+	alias phprec='vendor/bin/rector process $(git diff --name-only HEAD | paste -sd " " -)'
+	alias phpfix='phpcsfixer && phprec'
 
 	export PATH="$HOME/.local/bin":$PATH
 	export PATH="$HOME/.composer/vendor/bin:$PATH"
