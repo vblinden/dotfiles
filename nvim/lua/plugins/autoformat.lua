@@ -32,7 +32,7 @@ return {
 			lua = { "stylua" },
 			javascript = { "prettierd", "prettier", stop_after_first = false },
 			typescript = { "prettierd", "prettier", stop_after_first = false },
-			php = { "php-cs-fixer", "pint", "phpcbf", stop_after_first = true },
+			php = { "php_cs_fixer", "pint", "phpcbf", stop_after_first = true },
 			blade = { "blade-formatter" },
 			twig = { "twig-cs-fixer" },
 			markdown = { "markdownlint" },
