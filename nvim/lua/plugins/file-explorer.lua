@@ -18,24 +18,24 @@ return {
 			function()
 				require("neo-tree.command").execute({ reveal = true })
 			end,
-			desc = "Explorer NeoTree (reveal)",
+			desc = "Explorer (reveal)",
 		},
 		{
 			"<leader>fe",
 			function()
 				require("neo-tree.command").execute({ toggle = true })
 			end,
-			desc = "Explorer NeoTree (root dir)",
+			desc = "Explorer (root dir)",
 		},
 		{
 			"<leader>fE",
 			function()
 				require("neo-tree.command").execute({ toggle = true, reveal = true })
 			end,
-			desc = "Explorer NeoTree (cwd)",
+			desc = "Explorer (reveal)",
 		},
-		{ "<leader>e", "<leader>fe", desc = "Explorer NeoTree (root dir)", remap = true },
-		{ "<leader>E", "<leader>fE", desc = "Explorer NeoTree (cwd)", remap = true },
+		{ "<leader>e", "<leader>fe", desc = "Explorer (root dir)", remap = true },
+		{ "<leader>E", "<leader>fE", desc = "Explorer (reveal)", remap = true },
 		{
 			"<leader>ge",
 			function()

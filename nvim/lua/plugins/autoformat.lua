@@ -30,8 +30,11 @@ return {
 		end,
 		formatters_by_ft = {
 			lua = { "stylua" },
+			css = { "css_beautify" },
 			javascript = { "prettierd", "prettier", stop_after_first = false },
+			javascriptreact = { "prettierd", "prettier", stop_after_first = false },
 			typescript = { "prettierd", "prettier", stop_after_first = false },
+			typescriptreact = { "prettierd", "prettier", stop_after_first = false },
 			php = { "php_cs_fixer", "pint", "phpcbf", stop_after_first = true },
 			blade = { "blade-formatter" },
 			twig = { "twig-cs-fixer" },
