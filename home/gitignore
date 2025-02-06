@@ -6,3 +6,4 @@
 .vim-arsync
 .sync
 .twig-cs-fixer.cache
+.php-cs-fixer.cache

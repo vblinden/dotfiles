@@ -35,7 +35,7 @@ return {
 			javascriptreact = { "prettierd", "prettier", stop_after_first = false },
 			typescript = { "prettierd", "prettier", stop_after_first = false },
 			typescriptreact = { "prettierd", "prettier", stop_after_first = false },
-			php = { "php_cs_fixer", "pint", "phpcbf", stop_after_first = true },
+			php = { "pint", "php_cs_fixer", "phpcbf", stop_after_first = false },
 			blade = { "blade-formatter" },
 			twig = { "twig-cs-fixer" },
 			markdown = { "markdownlint" },
