@@ -1,7 +1,8 @@
 return {
 	"nvim-telescope/telescope.nvim",
 	event = "VeryLazy",
-	branch = "0.1.x",
+	-- TODO: Update when nvim 0.11 fix is released
+	-- branch = "0.1.x",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		{

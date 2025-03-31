@@ -7,9 +7,22 @@ return {
 		"nvim-tree/nvim-web-devicons",
 		"MunifTanjim/nui.nvim",
 	},
+	---@module "neo-tree"
+	---@type neotree.Config?
 	opts = {
+		close_if_last_window = true,
+		auto_clean_after_session_restore = true,
 		window = {
 			position = "right",
+		},
+		event_handlers = {
+			{
+				event = "file_opened",
+				handler = function()
+					--auto close
+					require("neo-tree.command").execute({ action = "close" })
+				end,
+			},
 		},
 	},
 	keys = {
