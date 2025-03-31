@@ -33,6 +33,7 @@ alias vim="nvim"
 alias lg="gitui"
 alias search="rg -uuu"
 alias nvm="fnm"
+alias uuid='uuidgen | tr "[:upper:]" "[:lower:]"'
 
 # We are on macOS...
 if [[ $(uname) == "Darwin" ]]; then
