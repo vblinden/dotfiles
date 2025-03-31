@@ -1,0 +1,139 @@
+{
+  // Hello friends, and welcome to my Zed settings file.
+  // Please use this file as a reference, and don't copy it directly.
+  // It's heavily tailored to my personal preferences and workflow.
+
+  // General settings...
+  "ssh_connections": [
+    {
+      "host": "dev",
+      "projects": [
+        {
+          "paths": ["/sites/customer.frontend/www/customer.frontend"]
+        }
+      ]
+    }
+  ],
+  "cursor_blink": false,
+  "relative_line_numbers": true,
+  "vertical_scroll_margin": 6,
+  "restore_on_startup": "none",
+  "current_line_highlight": "none",
+  "soft_wrap": "editor_width",
+  "indent_guides": {
+    "enabled": false
+  },
+  "use_autoclose": true,
+  "base_keymap": "VSCode",
+
+  // Inline diagnostics settings...
+  "diagnostics": {
+    "include_warnings": false,
+    "inline": {
+      "enabled": true,
+      "update_debounce_ms": 150
+    }
+  },
+
+  // Vim settings...
+  "vim_mode": true,
+  "vim": {
+    "use_system_clipboard": "always",
+    "use_multiline_find": true
+  },
+
+  // Buffer settings...
+  "buffer_font_size": 16,
+  "buffer_font_family": "JetBrains Mono",
+  "buffer_font_features": {
+    "calt": false
+  },
+  "buffer_line_height": "comfortable",
+
+  // UI settings...
+  "ui_font_size": 20,
+  // "ui_font_family": "JetBrains Mono",
+  "ui_font_features": {
+    "calt": false
+  },
+
+  // Theme settings...
+  "theme": {
+    "mode": "system",
+    "light": "Catppuccin Frappé - No Italics",
+    "dark": "Catppuccin Frappé - No Italics"
+  },
+
+  // AI settings...
+  "assistant": {
+    "default_model": {
+      "provider": "copilot_chat",
+      "model": "gpt-4o"
+    },
+    "version": "2"
+  },
+
+  // Language specific settings...
+  "languages": {
+    "PHP": {
+      "language_servers": ["intelephense", "!phpactor", "..."],
+      "format_on_save": "on",
+      "formatter": [
+        { "language_server": { "name": "intelephense" } },
+        {
+          "external": {
+            "command": "bash",
+            "arguments": [
+              "-c",
+              "temp=$(mktemp) && cat > $temp && ./vendor/bin/pint --quiet $temp && cat $temp && rm $temp"
+            ]
+          }
+        },
+        {
+          "external": {
+            "command": "vendor/bin/php-cs-fixer-stdin",
+            "arguments": ["-"]
+          }
+        }
+      ]
+    }
+  },
+
+  // Telemetry...
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
+  },
+
+  // Other settings...
+  "private_files": [
+    "**/.env*",
+    "**/*.pem",
+    "**/*.key",
+    "**/*.cert",
+    "**/*.crt",
+    "**/secrets.yml"
+  ],
+  "toolbar": {
+    "breadcrumbs": false,
+    "quick_actions": false
+  },
+  "project_panel": {
+    "auto_fold_dirs": false,
+    "default_width": 340,
+    "dock": "right"
+  },
+  "chat_panel": {
+    "button": "when_in_call"
+  },
+  "git_panel": {
+    "dock": "right"
+  },
+  "collaboration_panel": {
+    "button": false
+  },
+  "show_edit_predictions": true,
+  "features": {
+    "edit_prediction_provider": "zed"
+  }
+}

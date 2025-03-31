@@ -1,0 +1,101 @@
+[
+  {
+    "context": "Workspace",
+    "bindings": {
+      // "cmd-shift-i": "assistant::ToggleFocus"
+    }
+  },
+
+  // Project open and closing...
+  {
+    "context": "!ProjectPanel",
+    "bindings": {
+      "cmd-k cmd-e": "project_panel::ToggleFocus"
+    }
+  },
+  {
+    "context": "ProjectPanel",
+    "bindings": {
+      "cmd-k cmd-e": "workspace::ToggleRightDock"
+    }
+  },
+
+  // Git open and closing...
+  {
+    "context": "!GitPanel",
+    "bindings": {
+      "cmd-k cmd-g": "git_panel::ToggleFocus"
+    }
+  },
+  {
+    "context": "GitPanel",
+    "bindings": {
+      "cmd-k cmd-g": "workspace::ToggleRightDock"
+    }
+  },
+
+  // Terminal open and closing...
+  {
+    "context": "!Terminal",
+    "bindings": {
+      "cmd-t": "terminal_panel::ToggleFocus"
+    }
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "cmd-t": "workspace::ToggleBottomDock",
+      "cmd+n": "workspace::NewTerminal"
+    }
+  },
+
+  // Editor...
+  {
+    "context": "Editor",
+    "bindings": {
+      "cmd-[": "pane::GoBack",
+      "cmd-]": "pane::GoForward"
+      // "x": ["workspace::SendKeystrokes", "\" _ x"]
+      // TODO: Also add capital X...
+    }
+  },
+
+  // Switching tabs like tmux...
+  {
+    "context": "Pane",
+    "bindings": {
+      "ctrl-space 1": ["pane::ActivateItem", 0],
+      "ctrl-space 2": ["pane::ActivateItem", 1],
+      "ctrl-space 3": ["pane::ActivateItem", 2],
+      "ctrl-space 4": ["pane::ActivateItem", 3],
+      "ctrl-space 5": ["pane::ActivateItem", 4],
+      "ctrl-space 6": ["pane::ActivateItem", 5],
+      "ctrl-space 7": ["pane::ActivateItem", 6],
+      "ctrl-space 8": ["pane::ActivateItem", 7],
+      "ctrl-space 9": ["pane::ActivateItem", 8]
+    }
+  },
+
+  // VIM specific bindings...
+  {
+    "context": "Editor && vim_mode == visual",
+    "bindings": {
+      "J": "editor::MoveLineDown",
+      "K": "editor::MoveLineUp"
+    }
+  },
+  // {
+  //   "context": "Editor && vim_mode == normal",
+  //   "bindings": {
+  //     "x": ["workspace::SendKeystrokes", "\" _ x"]
+  //   }
+  // },
+
+  // Overwrite existing keybindings...
+  {
+    "context": "Editor && mode == full",
+    "bindings": {
+      "cmd-o": "projects::OpenRecent"
+    }
+  }
+]
