@@ -5,7 +5,6 @@ return {
 	config = function()
 		require("catppuccin").setup({
 			integrations = {
-				neotree = true,
 				which_key = true,
 				barbar = true,
 			},

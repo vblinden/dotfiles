@@ -39,6 +39,7 @@ return {
 				},
 			},
 			extensions = {
+				fzf = {},
 				["live_grep_args"] = {
 					require("telescope").load_extension("live_grep_args"),
 				},
@@ -82,7 +83,7 @@ return {
 		)
 		vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "[S]earch [D]iagnostics" })
 		vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "[S]earch [R]esume" })
-		vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
+		vim.keymap.set("n", "<leader>se", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
 		vim.keymap.set("n", "<leader>gf", builtin.git_files, { desc = "Search [G]it [F]iles" })
 		vim.keymap.set(
 			"n",

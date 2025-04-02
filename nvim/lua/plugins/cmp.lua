@@ -45,6 +45,7 @@ return {
 			mapping = cmp.mapping.preset.insert({
 				-- Select the [n]ext item
 				["<C-n>"] = cmp.mapping.select_next_item(),
+
 				-- Select the [p]revious item
 				["<C-p>"] = cmp.mapping.select_prev_item(),
 
@@ -56,6 +57,7 @@ return {
 					behavior = cmp.ConfirmBehavior.Replace,
 					select = true,
 				}),
+
 				["<Tab>"] = cmp.mapping(function(fallback)
 					if cmp.visible() then
 						cmp.select_next_item()
@@ -65,6 +67,7 @@ return {
 						fallback()
 					end
 				end, { "i", "s" }),
+
 				["<S-Tab>"] = cmp.mapping(function(fallback)
 					if cmp.visible() then
 						cmp.select_prev_item()

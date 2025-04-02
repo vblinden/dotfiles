@@ -7,7 +7,6 @@ return {
 		animation = false,
 		insert_at_end = true,
 		-- insert_at_start = true,
-		-- …etc.
 		icons = {
 			filetype = {
 				enabled = false,

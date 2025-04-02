@@ -1,7 +1,8 @@
 return {
 	"lewis6991/gitsigns.nvim",
 	opts = {
-		-- See `:help gitsigns.txt`
+		current_line_blame = true,
+
 		signs = {
 			add = { text = "+" },
 			change = { text = "~" },
