@@ -11,3 +11,5 @@ confirm-close-surface = false
 copy-on-select = clipboard
 title = " "
 macos-titlebar-proxy-icon = hidden
+cursor-color = #F2D5CF
+cursor-text = #000
