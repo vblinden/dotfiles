@@ -1,93 +1,76 @@
-local o, opt = vim.o, vim.opt
+-- Make line numbers default
+vim.opt.number = true
+vim.opt.relativenumber = true
 
--- Set <space> as the leader key
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+-- Enable mouse mode, can be useful for resizing splits for example!
+vim.opt.mouse = 'a'
 
--- Set highlight on search, but clear on pressing <Esc> in normal mode
-opt.hlsearch = true
-vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
-
-vim.g.copilot_no_tab_map = true
-
-vim.g.have_nerd_font = false
-
--- Enable mouse mode
-o.mouse = "a"
-
--- Tab width
-opt.tabstop = 4
-opt.shiftwidth = 4
-opt.softtabstop = 4
-
--- Indentation
-opt.autoindent = true
-opt.cindent = true
-
--- Wrap
-opt.wrap = true
-opt.breakindent = true
-opt.showbreak = string.rep(" ", 3) -- Make it so that long lines wrap smartly
-opt.linebreak = true
-
--- Relative line numbers
-opt.relativenumber = true
-opt.number = true
-opt.scrolloff = 8
-
--- Backup
-o.backup = true
-o.backupdir = ".vim/backup/"
-o.writebackup = true
-o.backupcopy = "yes"
-
--- Control-C for insert mode
-vim.keymap.set("i", "<C-c>", "<Esc>")
-
--- Center when going page up and down or searching
-vim.keymap.set("n", "<C-d>", "<C-d>zz")
-vim.keymap.set("n", "<C-u>", "<C-u>zz")
-vim.keymap.set("n", "n", "nzzzv")
-vim.keymap.set("n", "N", "Nzzzv")
-
--- When combining line, let cursor alone
-vim.keymap.set("n", "J", "mzJ`z")
-
--- Move selection up or down
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
-
--- Try out switching tabs
-vim.keymap.set("n", "<leader>kt", "<Cmd>BufferPick<CR>")
+-- Don't show the mode, since it's already in the status line
+vim.opt.showmode = false
 
 -- Sync clipboard between OS and Neovim.
-o.clipboard = "unnamedplus"
+-- Schedule the setting after `UiEnter` because it can increase startup-time.
+vim.schedule(function()
+  vim.opt.clipboard = 'unnamedplus'
+end)
 
 -- Enable break indent
-o.breakindent = true
+vim.opt.breakindent = true
 
 -- Save undo history
-o.undofile = true
+vim.opt.undofile = true
 
--- Case-insensitive searching UNLESS \C or capital in search
-o.ignorecase = true
-o.smartcase = true
+-- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
 -- Keep signcolumn on by default
-vim.wo.signcolumn = "yes"
+vim.opt.signcolumn = 'yes'
 
 -- Decrease update time
-o.updatetime = 250
-o.timeoutlen = 300
+vim.opt.updatetime = 250
 
-o.termguicolors = true
+-- Decrease mapped sequence wait time
+vim.opt.timeoutlen = 300
 
--- Configure how new split should be opened
-o.splitright = true
-o.splitbelow = true
+-- Configure how new splits should be opened
+vim.opt.splitright = true
+vim.opt.splitbelow = true
 
--- Preview substitutions live
-opt.inccommand = "split"
+-- Backup
+vim.o.backup = true
+vim.o.backupdir = '.vim/backup/'
+vim.o.writebackup = true
+vim.o.backupcopy = 'yes'
 
--- Show which line your cursor is on
-opt.cursorline = false
+-- Tab width
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.softtabstop = 4
+
+-- Indentation
+vim.opt.autoindent = true
+vim.opt.cindent = true
+
+-- Wrap
+vim.opt.wrap = true
+vim.opt.breakindent = true
+vim.opt.showbreak = string.rep(' ', 3) -- Make it so that long lines wrap smartly
+vim.opt.linebreak = true
+
+-- Sets how neovim will display certain whitespace characters in the editor.
+-- vim.opt.list = true
+-- vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+
+-- Preview substitutions live, as you type!
+vim.opt.inccommand = 'split'
+
+-- Don't show which line your cursor is on
+vim.opt.cursorline = false
+
+-- Minimal number of screen lines to keep above and below the cursor.
+vim.opt.scrolloff = 10
+
+-- If performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
+-- instead raise a dialog asking if you wish to save the current file(s)
+vim.opt.confirm = false
