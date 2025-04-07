@@ -34,6 +34,7 @@ alias lg="gitui"
 alias search="rg -uuu"
 alias nvm="fnm"
 alias uuid='uuidgen | tr "[:upper:]" "[:lower:]"'
+alias claer="clear"
 
 # We are on macOS...
 if [[ $(uname) == "Darwin" ]]; then

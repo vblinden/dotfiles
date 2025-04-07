@@ -3,7 +3,7 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
-vim.opt.mouse = 'a'
+vim.opt.mouse = "a"
 
 -- Don't show the mode, since it's already in the status line
 vim.opt.showmode = false
@@ -11,7 +11,7 @@ vim.opt.showmode = false
 -- Sync clipboard between OS and Neovim.
 -- Schedule the setting after `UiEnter` because it can increase startup-time.
 vim.schedule(function()
-  vim.opt.clipboard = 'unnamedplus'
+	vim.opt.clipboard = "unnamedplus"
 end)
 
 -- Enable break indent
@@ -25,7 +25,7 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 -- Keep signcolumn on by default
-vim.opt.signcolumn = 'yes'
+vim.opt.signcolumn = "yes"
 
 -- Decrease update time
 vim.opt.updatetime = 250
@@ -39,9 +39,9 @@ vim.opt.splitbelow = true
 
 -- Backup
 vim.o.backup = true
-vim.o.backupdir = '.vim/backup/'
+vim.o.backupdir = ".vim/backup/"
 vim.o.writebackup = true
-vim.o.backupcopy = 'yes'
+vim.o.backupcopy = "yes"
 
 -- Tab width
 vim.opt.tabstop = 4
@@ -55,7 +55,7 @@ vim.opt.cindent = true
 -- Wrap
 vim.opt.wrap = true
 vim.opt.breakindent = true
-vim.opt.showbreak = string.rep(' ', 3) -- Make it so that long lines wrap smartly
+vim.opt.showbreak = string.rep(" ", 3) -- Make it so that long lines wrap smartly
 vim.opt.linebreak = true
 
 -- Sets how neovim will display certain whitespace characters in the editor.
@@ -63,7 +63,7 @@ vim.opt.linebreak = true
 -- vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
 -- Preview substitutions live, as you type!
-vim.opt.inccommand = 'split'
+vim.opt.inccommand = "split"
 
 -- Don't show which line your cursor is on
 vim.opt.cursorline = false
