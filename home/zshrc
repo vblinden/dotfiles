@@ -36,6 +36,16 @@ alias nvm="fnm"
 alias uuid='uuidgen | tr "[:upper:]" "[:lower:]"'
 alias claer="clear"
 
+kube() {
+  export KUBECONFIG="$HOME/Code/kube/personal.yml"
+  echo "KUBECONFIG set to: $KUBECONFIG"
+}
+
+kubeuxd() {
+  export KUBECONFIG="$HOME/Code/kube/uxd.yml"
+  echo "KUBECONFIG set to: $KUBECONFIG"
+}
+
 # We are on macOS...
 if [[ $(uname) == "Darwin" ]]; then
 	source ~/.secrets
