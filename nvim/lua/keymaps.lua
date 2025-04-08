@@ -40,3 +40,14 @@ vim.keymap.set("n", "J", "mzJ`z")
 -- Move selection up or down
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+
+-- Reselect visual selection after indenting.
+vim.keymap.set("v", "<", "<gv")
+vim.keymap.set("v", ">", ">gv")
+
+-- Paste replace visual selection without copying it.
+vim.keymap.set("v", "p", '"_dP')
+
+-- Easy insertion of a trailing ; or , from insert mode.
+vim.keymap.set("i", ";;", "<Esc>A;")
+vim.keymap.set("i", ",,", "<Esc>A,")
