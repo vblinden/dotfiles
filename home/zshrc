@@ -51,6 +51,7 @@ if [[ $(uname) == "Darwin" ]]; then
 	source ~/.secrets
 
 	alias kubectl-uxd="kubectl --kubeconfig=/Users/vblinden/Code/kube/uxd.yaml --insecure-skip-tls-verify"
+	alias k9s="k9s --kubeconfig ~/Code/kube/personal.yml"
 	alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
 	alias phpcsfixer='for file in $(git diff --name-only HEAD | grep "\.php$"); do vendor/bin/php-cs-fixer fix "$file"; done'
 	alias phprec='vendor/bin/rector process $(git diff --name-only HEAD | paste -sd " " -)'
@@ -101,15 +102,3 @@ _fzf_compgen_dir() {
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
-
-
-# Herd injected PHP binary.
-export PATH="/Users/vblinden/Library/Application Support/Herd/bin/":$PATH
-
-
-# Herd injected PHP 8.4 configuration.
-export HERD_PHP_84_INI_SCAN_DIR="/Users/vblinden/Library/Application Support/Herd/config/php/84/"
-
-
-# Herd injected PHP 8.3 configuration.
-export HERD_PHP_83_INI_SCAN_DIR="/Users/vblinden/Library/Application Support/Herd/config/php/83/"

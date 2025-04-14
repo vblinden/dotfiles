@@ -6,7 +6,11 @@
     font-family: 'Berkeley Mono', Consolas, 'Courier New', monospace;
 }
 
-.editor-group-watermark {
+.window-title {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif!important;
+}
+
+/* .editor-group-watermark {
     background-image: url(/Users/[...]/vscode_bg_icon.svg);
     opacity: 0
-}
+} */
