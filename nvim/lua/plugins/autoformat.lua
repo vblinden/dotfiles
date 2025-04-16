@@ -62,6 +62,7 @@ return {
 			php = { "pint", "php_cs_fixer", "phpcbf", stop_after_first = false },
 			blade = { "blade-formatter" },
 			twig = { "twig-cs-fixer" },
+			go = { "gofmt" },
 			markdown = { "markdownlint" },
 		},
 	},
