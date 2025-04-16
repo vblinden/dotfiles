@@ -9,9 +9,7 @@ defaults write NSGlobalDomain KeyRepeat -int 2
 defaults write NSGlobalDomain InitialKeyRepeat -int 12
 defaults write -g ApplePressAndHoldEnabled -bool false
 
-# TODO: Auto install dependencies, oh-my-zsh, tmux, nvim, fzf, fnm, wezterm, gitui
-# brew tap moritzsternemann/apple-fonts
-# brew install --cask font-sf-pro
+# TODO: Auto install dependencies, oh-my-zsh, tmux, nvim, fd, fzf, fnm, ghostty, gitui
 
 rm -rf $HOME/.zshrc
 ln -s $DOTFILES/home/zshrc $HOME/.zshrc
@@ -25,14 +23,9 @@ ln -s $DOTFILES/home/gitignore $HOME/.gitignore
 rm -rf $HOME/.tmux.conf
 ln -s $DOTFILES/tmux/tmux.conf $HOME/.tmux.conf
 
-rm -rf $HOME/.ideavimrc
-ln -s $DOTFILES/home/ideavimrc $HOME/.ideavimrc
-
 mkdir -p $HOME/.local/bin
 rm -rf $HOME/.local/bin/t
 ln -s $DOTFILES/scripts/t $HOME/.local/bin/t
-rm -rf $HOME/.local/bin/phpstorm
-ln -s $DOTFILES/scripts/phpstorm $HOME/.local/bin/phpstorm
 
 mkdir -p $HOME/.config/nvim
 rm -rf $HOME/.config/nvim
