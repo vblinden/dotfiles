@@ -6,6 +6,12 @@ return {
 		local actions = require("fzf-lua").actions
 
 		fzf_lua.setup({
+			keymap = {
+				fzf = {
+					true,
+					["ctrl-q"] = "select-all+accept",
+				},
+			},
 			actions = {
 				files = {
 					true,
