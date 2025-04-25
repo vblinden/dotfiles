@@ -11,6 +11,7 @@ return {
 	"tpope/vim-rhubarb",
 	"tpope/vim-fugitive",
 	"shumphrey/fugitive-gitlab.vim",
+	"sindrets/diffview.nvim",
 
 	-- Highlight todo, notes, etc in comments
 	{
