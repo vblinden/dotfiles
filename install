@@ -2,14 +2,27 @@
 
 DOTFILES=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
 
-# TODO: Make difference for MacOS and Linux
+if [[ "$(uname -s)" == "Linux" ]]; then
+	echo "Linux detected"
+elif [[ "$(uname -s)" == "Darwin" ]]; then
+	defaults write NSGlobalDomain KeyRepeat -int 2
+	defaults write NSGlobalDomain InitialKeyRepeat -int 12
+	defaults write -g ApplePressAndHoldEnabled -bool false
 
-# Maximum key repeat rate
-defaults write NSGlobalDomain KeyRepeat -int 2
-defaults write NSGlobalDomain InitialKeyRepeat -int 12
-defaults write -g ApplePressAndHoldEnabled -bool false
+	curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash
 
-# TODO: Auto install dependencies, oh-my-zsh, tmux, nvim, fd, fzf, fnm, ghostty, gitui
+	brew install \
+		fd \
+		fzf \
+		ripgrep \
+		git \
+		gitui \
+		tmux \
+		fnm \
+		ghostty
+
+	curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sh
+fi
 
 rm -rf $HOME/.zshrc
 ln -s $DOTFILES/home/zshrc $HOME/.zshrc
