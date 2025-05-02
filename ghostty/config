@@ -1,8 +1,11 @@
 shell-integration-features = no-cursor
 font-family = Berkeley Mono 
+#font-family = JetBrains Mono
+#background-opacity = 0.85
+#background-blur-radius = 100
 font-size = 18
 font-feature = -calt
-adjust-cell-height = 20%
+#adjust-cell-height = 20%
 term=xterm-256color
 theme = catppuccin-frappe
 window-padding-x = 0

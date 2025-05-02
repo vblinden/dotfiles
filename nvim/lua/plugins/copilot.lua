@@ -12,6 +12,7 @@ return {
 					prev = "<C-h>",
 				},
 			},
+			-- copilot_model = "",
 		})
 	end,
 }
