@@ -19,6 +19,10 @@ elif [[ "$(uname -s)" == "Darwin" ]]; then
 		gitui \
 		tmux \
 		fnm \
+		lua \
+		go \
+		php \
+		composer \
 		ghostty
 
 	curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sh
