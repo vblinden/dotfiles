@@ -1,6 +1,6 @@
 shell-integration-features = no-cursor
-font-family = Berkeley Mono 
-#font-family = JetBrains Mono
+#font-family = Berkeley Mono 
+font-family = JetBrains Mono
 #background-opacity = 0.85
 #background-blur-radius = 100
 font-size = 18
