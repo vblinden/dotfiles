@@ -5,6 +5,7 @@ return {
 	config = function()
 		require("catppuccin").setup({
 			show_end_of_buffer = true,
+			transparent_background = true,
 			integrations = {
 				which_key = true,
 				barbar = true,
@@ -16,6 +17,6 @@ return {
 			no_bold = true,
 		})
 
-		vim.cmd.colorscheme("catppuccin-frappe")
+		vim.cmd.colorscheme("catppuccin-mocha")
 	end,
 }
