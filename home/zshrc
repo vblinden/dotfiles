@@ -48,29 +48,31 @@ kubeuxd() {
 
 # We are on macOS...
 if [[ $(uname) == "Darwin" ]]; then
-	source ~/.secrets
+  source ~/.secrets
 
-	alias kubectl-uxd="kubectl --kubeconfig=/Users/vblinden/Code/kube/uxd.yaml --insecure-skip-tls-verify"
-	alias k9s="k9s --kubeconfig ~/Code/kube/personal.yml"
-	alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
-	alias phpcsfixer='for file in $(git diff --name-only HEAD | grep "\.php$"); do vendor/bin/php-cs-fixer fix "$file"; done'
-	alias phprec='vendor/bin/rector process $(git diff --name-only HEAD | paste -sd " " -)'
-	alias phpfix='phpcsfixer && phprec'
+  alias kubectl-uxd="kubectl --kubeconfig=/Users/vblinden/Code/kube/uxd.yaml --insecure-skip-tls-verify"
+  alias k9s="k9s --kubeconfig ~/Code/kube/personal.yml"
+  alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
+  alias phpcsfixer='for file in $(git diff --name-only HEAD | grep "\.php$"); do vendor/bin/php-cs-fixer fix "$file"; done'
+  alias phprec='vendor/bin/rector process $(git diff --name-only HEAD | paste -sd " " -)'
+  alias phpfix='phpcsfixer && phprec'
 
-	export PATH="$HOME/.local/bin":$PATH
-	export PATH="$HOME/.composer/vendor/bin:$PATH"
-	export PATH="/Users/vblinden/go/bin:$PATH"
-	export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+  export PATH="$HOME/.local/bin":$PATH
+  export PATH="$HOME/.composer/vendor/bin:$PATH"
+  export PATH="/Users/vblinden/go/bin:$PATH"
+  export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 
-	export PATH="/opt/homebrew/opt/ruby/bin:/usr/local/lib/ruby/gems/3.1.0/bin:$PATH"
+  export PATH="/opt/homebrew/opt/ruby/bin:/usr/local/lib/ruby/gems/3.1.0/bin:$PATH"
+
+  # export PATH="${HOME}/.pyenv/shims:${PATH}"
 
 # We are on Linux...
 elif command -v apt > /dev/null; then
-        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 # Unknown OS...
 else
-    echo 'Unknown OS!'
+  echo 'Unknown OS!'
 fi
 
 # FNM (fast node manager)
