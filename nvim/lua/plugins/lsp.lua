@@ -202,6 +202,7 @@ return {
 				-- pyright = {},
 				-- rust_analyzer = {},
 				gopls = {},
+				templ = {},
 				ts_ls = {},
 				html = { filetypes = { "html", "twig", "hbs" } },
 				intelephense = {},
