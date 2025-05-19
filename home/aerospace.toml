@@ -2,7 +2,9 @@ enable-normalization-flatten-containers = false
 enable-normalization-opposite-orientation-for-nested-containers = false
 
 # Mouse follows focus when focused monitor changes
-on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+# on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+on-focused-monitor-changed = []
+on-focus-changed = []
 
 [gaps]
     inner.horizontal = 8
@@ -62,6 +64,8 @@ on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
     alt-shift-8 = 'move-node-to-workspace 8'
     alt-shift-9 = 'move-node-to-workspace 9'
     alt-shift-0 = 'move-node-to-workspace 10'
+
+    alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
     alt-shift-c = 'reload-config'
 
