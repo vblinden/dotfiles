@@ -15,25 +15,18 @@ on-focus-changed = []
     outer.right =      8
 
 [mode.main.binding]
-    alt-enter = '''exec-and-forget osascript -e '
-    tell application "Ghostty"
-        do script
-        activate
-    end tell'
-    '''
-
-    alt-j =         'focus --boundaries-action wrap-around-the-workspace left'
-    alt-k =         'focus --boundaries-action wrap-around-the-workspace down'
-    alt-l =         'focus --boundaries-action wrap-around-the-workspace up'
-    alt-semicolon = 'focus --boundaries-action wrap-around-the-workspace right'
+    alt-h = 'focus --boundaries-action wrap-around-the-workspace left'
+    alt-j = 'focus --boundaries-action wrap-around-the-workspace down'
+    alt-k = 'focus --boundaries-action wrap-around-the-workspace up'
+    alt-l = 'focus --boundaries-action wrap-around-the-workspace right'
 
     alt-shift-j = 'move left'
     alt-shift-k = 'move down'
     alt-shift-l = 'move up'
     alt-shift-semicolon = 'move right'
 
-    alt-h = 'split horizontal'
-    alt-v = 'split vertical'
+    alt-i = 'split horizontal'
+    alt-o = 'split vertical'
 
     alt-f = 'fullscreen'
 
@@ -72,9 +65,9 @@ on-focus-changed = []
     alt-r = 'mode resize'
 
 [mode.resize.binding]
-    h = 'resize width -50'
+    h = 'resize width +50'
     j = 'resize height +50'
     k = 'resize height -50'
-    l = 'resize width +50'
+    l = 'resize width -50'
     enter = 'mode main'
     esc = 'mode main'
