@@ -5,6 +5,8 @@ return {
 		local fzf_lua = require("fzf-lua")
 		local actions = require("fzf-lua").actions
 
+		require("fzf-lua").register_ui_select()
+
 		fzf_lua.setup({
 			keymap = {
 				fzf = {
