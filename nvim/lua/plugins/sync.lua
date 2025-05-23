@@ -17,4 +17,7 @@ return {
 	dependencies = {
 		"skywind3000/asyncrun.vim",
 	},
+	config = function()
+		vim.keymap.del("n", "<leader>sd")
+	end,
 }
