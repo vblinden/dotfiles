@@ -5,7 +5,7 @@ vim.g.fugitive_gitlab_domains = {
 
 return {
 	-- Detect tabstop and shiftwidth automatically
-	"tpope/vim-sleuth",
+	"nmac427/guess-indent.nvim",
 
 	-- Git related
 	"tpope/vim-rhubarb",

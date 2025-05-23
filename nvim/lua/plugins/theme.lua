@@ -11,6 +11,7 @@ return {
 				barbar = true,
 				treesitter = true,
 				blink_cmp = true,
+				mason = true,
 				fzf = true,
 			},
 			no_italic = true,
