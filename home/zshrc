@@ -50,7 +50,7 @@ kubeuxd() {
 if [[ $(uname) == "Darwin" ]]; then
   source ~/.secrets
 
-  alias kubectl-uxd="kubectl --kubeconfig=/Users/vblinden/Code/kube/uxd.yaml --insecure-skip-tls-verify"
+  alias kubectl-uxd="kubectl --kubeconfig=$HOME/Code/kube/uxd.yaml --insecure-skip-tls-verify"
   alias k9s="k9s --kubeconfig ~/Code/kube/personal.yml"
   alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
   alias phpcsfixer='for file in $(git diff --name-only HEAD | grep "\.php$"); do PHP_CS_FIXER_IGNORE_ENV=1 vendor/bin/php-cs-fixer fix "$file"; done'
@@ -59,7 +59,7 @@ if [[ $(uname) == "Darwin" ]]; then
 
   export PATH="$HOME/.local/bin":$PATH
   export PATH="$HOME/.composer/vendor/bin:$PATH"
-  export PATH="/Users/vblinden/go/bin:$PATH"
+  export PATH="$HOME/go/bin:$PATH"
   export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 
   export PATH="/opt/homebrew/opt/ruby/bin:/usr/local/lib/ruby/gems/3.1.0/bin:$PATH"
@@ -78,4 +78,4 @@ fi
 eval "$(fnm env --use-on-cd)"
 
 # bun completions
-[ -s "/Users/vblinden/.bun/_bun" ] && source "/Users/vblinden/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
