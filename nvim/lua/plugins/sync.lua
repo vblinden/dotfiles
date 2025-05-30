@@ -2,7 +2,8 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 	pattern = "*",
 	callback = function()
 		local current_file = vim.fn.expand("%:p")
-		local folder = "~/Code/teamblue/customer-frontend"
+		local home_dir = vim.fn.expand("$HOME")
+		local folder = home_dir .. "/Code/teamblue/customer-frontend"
 
 		if vim.startswith(current_file, folder) then
 			vim.fn.SyncUploadFile()
