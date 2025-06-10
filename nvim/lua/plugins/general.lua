@@ -11,7 +11,16 @@ return {
 	"tpope/vim-rhubarb",
 	"tpope/vim-fugitive",
 	"shumphrey/fugitive-gitlab.vim",
-	"sindrets/diffview.nvim",
+
+	-- Diffview
+	{
+		"sindrets/diffview.nvim",
+		config = function()
+			vim.keymap.set("n", "<leader>df", "<cmd>:DiffviewFileHistory %<CR>", { desc = "[D]iff [F]ile" })
+			vim.keymap.set("n", "<leader>dq", "<cmd>:DiffviewClose<CR>", { desc = "[D]iff [Q]uit" })
+			vim.keymap.set("n", "<leader>do", "<cmd>:DiffviewOpen<CR>", { desc = "[D]iff [F]ile" })
+		end,
+	},
 
 	-- Highlight todo, notes, etc in comments
 	{

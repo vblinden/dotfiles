@@ -1,0 +1,23 @@
+return {}
+
+-- return {
+-- 	"yetone/avante.nvim",
+-- 	event = "VeryLazy",
+-- 	version = false,
+-- 	opts = {
+-- 		provider = "gemini",
+-- 		providers = {
+-- 			gemini = {
+-- 				model = "gemini-2.5-flash-preview-05-20",
+-- 				api_key = os.getenv("GEMINI_API_KEY"),
+-- 			},
+-- 		},
+-- 	},
+-- 	build = "make",
+-- 	dependencies = {
+-- 		"nvim-treesitter/nvim-treesitter",
+-- 		"stevearc/dressing.nvim",
+-- 		"nvim-lua/plenary.nvim",
+-- 		"MunifTanjim/nui.nvim",
+-- 	},
+-- }

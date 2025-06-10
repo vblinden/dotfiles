@@ -6,6 +6,7 @@ vim.keymap.set("n", "<leader>n", "<cmd>MapleNotes<CR>", {
 
 return {
 	"forest-nvim/maple.nvim",
+	dir = "~/Code/vblinden/maple",
 	config = function()
 		require("maple").setup({
 			-- Your configuration options here
