@@ -20,6 +20,12 @@ return {
 					["ctrl-i"] = actions.toggle_ignore,
 				},
 			},
+			winopts = {
+				preview = {
+					vertical = "down:65%",
+					layout = "vertical",
+				},
+			},
 		})
 
 		vim.keymap.set("n", "<leader>sf", fzf_lua.files, { desc = "[S]earch [F]iles" })

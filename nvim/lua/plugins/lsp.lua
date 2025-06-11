@@ -78,7 +78,11 @@ return {
 					map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 
 					-- See `:help K` for why this keymap
-					map("K", vim.lsp.buf.hover, "Hover Documentation")
+					map("K", function()
+						vim.lsp.buf.hover({
+							border = "rounded",
+						})
+					end, "Hover Documentation")
 
 					-- Show the signature of the function you're currently completing.
 					map("<C-k>", vim.diagnostic.open_float, "Signature Documentation")
