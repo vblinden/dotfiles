@@ -2,40 +2,43 @@
 
 DOTFILES=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
 
+if ! command -v brew &> /dev/null; then
+	curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash
+fi
+
 if [[ "$(uname -s)" == "Linux" ]]; then
-	echo "Linux detected"
+	gsettings set org.gnome.desktop.peripherals.keyboard repeat true
+	gsettings set org.gnome.desktop.peripherals.keyboard delay 200      
+	gsettings set org.gnome.desktop.peripherals.keyboard repeat-interval 20  
 elif [[ "$(uname -s)" == "Darwin" ]]; then
 	defaults write NSGlobalDomain KeyRepeat -int 2
 	defaults write NSGlobalDomain InitialKeyRepeat -int 12
 	defaults write -g ApplePressAndHoldEnabled -bool false
 
-	if ! command -v brew &> /dev/null; then
-		curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash
-	fi
-
-	brew install \
-		fd \
-		fzf \
-		ripgrep \
-		git \
-		gitui \
-		tmux \
-		fnm \
-		lua \
-		go \
-		php \
-		composer \
-		ghostty
-
 	brew install --cask nikitabobko/tap/aerospace
-
-	if [ ! -d "$HOME/.oh-my-zsh" ]; then
-		curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sh
-	fi
-
-	go install github.com/air-verse/air@latest
-	go install github.com/a-h/templ/cmd/templ@latest
+	brew install ghostty
 fi
+
+brew install \
+	neovim \
+	fd \
+	fzf \
+	ripgrep \
+	git \
+	gitui \
+	tmux \
+	fnm \
+	lua \
+	go \
+	php \
+	composer
+
+if [ ! -d "$HOME/.oh-my-zsh" ]; then
+	curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sh
+fi
+
+go install github.com/air-verse/air@latest
+go install github.com/a-h/templ/cmd/templ@latest
 
 rm -rf $HOME/.zshrc
 ln -s $DOTFILES/home/zshrc $HOME/.zshrc
@@ -67,3 +70,4 @@ ln -s $DOTFILES/ghostty/config $HOME/.config/ghostty/config
 
 rm -rf $HOME/.aerospace.toml
 ln -s $DOTFILES/home/aerospace.toml $HOME/.aerospace.toml
+
