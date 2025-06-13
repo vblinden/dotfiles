@@ -1,4 +1,4 @@
-shell-integration-features = no-cursor
+shell-integration-features = cursor
 font-family = Berkeley Mono 
 # background-opacity = 0.85
 # background-blur-radius = 85
@@ -7,7 +7,8 @@ font-size = 18
 font-feature = -calt
 # adjust-cell-height = 8%
 adjust-cell-width = -2
-term = screen-256color
+term = xterm-256color
+adjust-cursor-thickness = 4
 theme = catppuccin-frappe
 window-padding-x = 0
 window-padding-y = 0
