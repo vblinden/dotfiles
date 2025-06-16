@@ -62,6 +62,8 @@ on-focus-changed = []
 
     alt-shift-c = 'reload-config'
 
+    alt-shift-a = "layout accordion"
+
     alt-r = 'mode resize'
 
 [mode.resize.binding]
