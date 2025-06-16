@@ -10,7 +10,6 @@
     font-family: -apple-system, BlinkMacSystemFont, sans-serif!important;
 }
 
-/* .editor-group-watermark {
-    background-image: url(/Users/[...]/vscode_bg_icon.svg);
+.editor-group-watermark {
     opacity: 0
-} */
+}

@@ -51,7 +51,7 @@ return {
 
 	{
 		"MeanderingProgrammer/render-markdown.nvim",
-		ft = { "markdown", "codecompanion" },
+		ft = { "codecompanion" },
 	},
 
 	{
@@ -59,7 +59,7 @@ return {
 		lazy = false,
 		opts = {
 			preview = {
-				filetypes = { "markdown", "codecompanion" },
+				filetypes = { "codecompanion" },
 				ignore_buftypes = {},
 			},
 		},
