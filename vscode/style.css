@@ -1,15 +1,15 @@
-* {
+/* * {
     font-family: 'Berkeley Mono', Consolas, 'Courier New', monospace;
-}
+} */
 
 .statusbar {
     font-family: 'Berkeley Mono', Consolas, 'Courier New', monospace;
 }
 
-.window-title {
+/* .window-title {
     font-family: -apple-system, BlinkMacSystemFont, sans-serif!important;
-}
+} */
 
-.editor-group-watermark {
+/* .editor-group-watermark {
     opacity: 0
-}
+} */
