@@ -46,7 +46,7 @@ return {
 			--  and try some other statusline plugin
 			local statusline = require("mini.statusline")
 			-- set use_icons to true if you have a Nerd Font
-			statusline.setup({ use_icons = vim.g.have_nerd_font })
+			statusline.setup({ use_icons = false })
 
 			-- You can configure sections in the statusline by overriding their
 			-- default behavior. For example, here we set the section for
@@ -64,6 +64,17 @@ return {
 			---@diagnostic disable-next-line: duplicate-set-field
 			statusline.section_fileinfo = function()
 				return ""
+			end
+
+			---@diagnostic disable-next-line: duplicate-set-field
+			statusline.section_git = function()
+				return ""
+			end
+
+			---@diagnostic disable-next-line: duplicate-set-field
+			statusline.section_diff = function()
+				local br = vim.fn.FugitiveHead()
+				return (br ~= "" and br or "")
 			end
 
 			-- ... and there is more!

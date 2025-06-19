@@ -41,7 +41,5 @@ require("lazy").setup("plugins", {
 	defaults = { lazy = false },
 })
 
-vim.keymap.set("n", "<leader>pm", "<cmd>Lazy<cr>", { desc = "Open [p]ackage [m]anager" })
-
 -- The line beneath this is called `modeline`.
 -- vim: ts=2 sts=2 sw=2 et

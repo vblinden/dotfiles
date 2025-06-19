@@ -44,8 +44,10 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
 
--- Paste replace visual selection without copying it.
-vim.keymap.set("v", "p", '"_dP')
+-- -- Paste replace visual selection without copying it.
+-- vim.keymap.set("v", "p", '"_dP')
+-- vim.keymap.set("x", "p", '"_dP', { noremap = true, silent = true })
+-- vim.keymap.set("x", "P", '"_dP', { noremap = true, silent = true })
 
 -- Easy insertion of a trailing ; or , from insert mode.
 vim.keymap.set("i", ";;", "<Esc>A;")
