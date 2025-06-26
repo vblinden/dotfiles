@@ -6,6 +6,9 @@ vim.keymap.set("n", "<leader>n", "<cmd>MapleNotes<CR>", {
 
 return {
 	"forest-nvim/maple.nvim",
+	dependencies = {
+		"nvim-lua/plenary.nvim",
+	},
 	config = function()
 		require("maple").setup({
 			-- Your configuration options here
