@@ -26,6 +26,15 @@ return {
 					layout = "vertical",
 				},
 			},
+			lsp = {
+				code_actions = {
+					previewer = false,
+					winopts = {
+						height = 0.3,
+						width = 0.5,
+					},
+				},
+			},
 		})
 
 		vim.keymap.set("n", "<leader>sf", fzf_lua.files, { desc = "[S]earch [F]iles" })
