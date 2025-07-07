@@ -8,3 +8,5 @@
 .sync
 .twig-cs-fixer.cache
 .php-cs-fixer.cache
+.claude/
+CLAUDE.md

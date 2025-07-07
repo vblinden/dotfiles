@@ -67,6 +67,7 @@ ln -s $DOTFILES/gitui $HOME/.config/gitui
 mkdir -p $HOME/.config/ghostty
 rm -rf $HOME/.config/ghostty/config 
 ln -s $DOTFILES/ghostty/config $HOME/.config/ghostty/config
+ln -s $DOTFILES/ghostty/themes $HOME/.config/ghostty/themes
 
 rm -rf $HOME/.aerospace.toml
 ln -s $DOTFILES/home/aerospace.toml $HOME/.aerospace.toml
