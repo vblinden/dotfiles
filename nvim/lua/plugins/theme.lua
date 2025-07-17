@@ -18,6 +18,6 @@ return {
 			no_bold = true,
 		})
 
-		vim.cmd.colorscheme("catppuccin-frappe")
+		vim.cmd.colorscheme("catppuccin-mocha")
 	end,
 }
