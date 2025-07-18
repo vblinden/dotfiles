@@ -6,6 +6,8 @@ enable-normalization-opposite-orientation-for-nested-containers = false
 on-focused-monitor-changed = []
 on-focus-changed = []
 
+# accordion-padding = 0
+
 [gaps]
     inner.horizontal = 0
     inner.vertical =   0
