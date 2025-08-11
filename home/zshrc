@@ -83,4 +83,4 @@ export PATH="/opt/homebrew/opt/bison/bin:$PATH"
 # opencode
 export PATH=/Users/vblinden/.opencode/bin:$PATH
 
-alias claude="/Users/vblinden/.claude/local/claude"
+export PATH="$HOME/.local/bin:$PATH"

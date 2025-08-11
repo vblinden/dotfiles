@@ -1,0 +1,92 @@
+[
+    // Cursor defaults
+    {
+        "key": "cmd+i",
+        "command": "composerMode.agent"
+    }
+
+    // Panels
+    {
+        "key": "cmd+k cmd+e",
+        "command": "workbench.view.explorer"
+    },
+    {
+        "key": "cmd+k cmd+g",
+        "command": "workbench.view.scm"
+    },
+    {
+        "key": "cmd+k cmd+d",
+        "command": "workbench.view.debug"
+    },
+    {
+        "key": "cmd+k cmd+x",
+        "command": "workbench.extensions.action.showEnabledExtensions",
+    },
+    {
+        "key": "cmd+k cmd+b",
+        "command": "workbench.action.toggleSidebarVisibility"
+    },
+    {
+        "key": "cmd+t",
+        "command": "workbench.action.terminal.toggleTerminal"
+    },
+
+    // Lines
+    {
+        "key": "cmd+j",
+        "command": "editor.action.joinLines",
+        "when": "editorTextFocus"
+    },
+
+    // Editor
+    {
+        "key": "cmd+k cmd+r",
+        "command": "editor.action.rename"
+    },
+    // {
+    //     "key": "shift+k",
+    //     "command": "editor.action.showHover"
+    // }
+
+    // Workbench
+    {
+        "key": "cmd+[",
+        "command": "workbench.action.navigateBack"
+    },
+    {
+        "key": "cmd+]",
+        "command": "workbench.action.navigateForward"
+    },
+
+    // Tabs
+    {
+        "key": "ctrl+space 1",
+        "command": "workbench.action.openEditorAtIndex1"
+    },
+    {
+        "key": "ctrl+space 2",
+        "command": "workbench.action.openEditorAtIndex2"
+    },
+    {
+        "key": "ctrl+space 3",
+        "command": "workbench.action.openEditorAtIndex3"
+    },
+    {
+        "key": "ctrl+space 4",
+        "command": "workbench.action.openEditorAtIndex4"
+    },
+    {
+        "key": "ctrl+space 5",
+        "command": "workbench.action.openEditorAtIndex5"
+    },
+
+    // Extension — Project Manager
+    {
+        "key": "cmd+o",
+        "command": "projectManager.listProjects",
+    },
+    {
+        "key": "cmd+shift+o",
+        "command": "projectManager.listProjectsNewWindow",
+    },
+]
