@@ -15,7 +15,7 @@ elif [[ "$(uname -s)" == "Darwin" ]]; then
 	defaults write NSGlobalDomain InitialKeyRepeat -int 12
 	defaults write -g ApplePressAndHoldEnabled -bool false
 
-	brew install --cask nikitabobko/tap/aerospace
+	# brew install --cask nikitabobko/tap/aerospace
 	brew install ghostty
 fi
 
@@ -37,8 +37,8 @@ if [ ! -d "$HOME/.oh-my-zsh" ]; then
 	curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sh
 fi
 
-go install github.com/air-verse/air@latest
-go install github.com/a-h/templ/cmd/templ@latest
+# go install github.com/air-verse/air@latest
+# go install github.com/a-h/templ/cmd/templ@latest
 
 rm -rf $HOME/.zshrc
 ln -s $DOTFILES/home/zshrc $HOME/.zshrc
@@ -67,8 +67,7 @@ ln -s $DOTFILES/gitui $HOME/.config/gitui
 mkdir -p $HOME/.config/ghostty
 rm -rf $HOME/.config/ghostty/config 
 ln -s $DOTFILES/ghostty/config $HOME/.config/ghostty/config
-ln -s $DOTFILES/ghostty/themes $HOME/.config/ghostty/themes
 
-rm -rf $HOME/.aerospace.toml
-ln -s $DOTFILES/home/aerospace.toml $HOME/.aerospace.toml
+# rm -rf $HOME/.aerospace.toml
+# ln -s $DOTFILES/home/aerospace.toml $HOME/.aerospace.toml
 

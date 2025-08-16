@@ -83,10 +83,10 @@
     // Extension — Project Manager
     {
         "key": "cmd+o",
-        "command": "projectManager.listProjects",
+        "command": "projectManager.listProjects"
     },
     {
         "key": "cmd+shift+o",
-        "command": "projectManager.listProjectsNewWindow",
+        "command": "projectManager.listProjectsNewWindow"
     },
 ]
