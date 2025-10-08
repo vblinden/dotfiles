@@ -39,4 +39,20 @@ return {
       })
     end,
   },
+
+  {
+    "stevearc/conform.nvim",
+    opts = {
+      css = { "css_beautify" },
+      javascript = { "prettier" },
+      javascriptreact = { "prettier" },
+      typescript = { "prettier" },
+      typescriptreact = { "prettier" },
+      php = { "pint", "php_cs_fixer", "phpcbf", stop_after_first = false },
+      blade = { "blade-formatter" },
+      twig = { "twig-cs-fixer" },
+      go = { "gofmt" },
+      markdown = { "markdownlint" },
+    },
+  },
 }
