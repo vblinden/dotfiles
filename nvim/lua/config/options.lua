@@ -8,3 +8,5 @@ opt.sidescrolloff = 9
 opt.smoothscroll = false
 
 opt.spelllang = { "en", "nl" }
+
+vim.g.lazyvim_php_lsp = "intelephense"

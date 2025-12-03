@@ -1,0 +1,98 @@
+{
+  "ssh_connections": [
+    {
+      "host": "dev",
+      "args": [],
+      "projects": [
+        {
+          "paths": ["/sites/customer.frontend"]
+        },
+        {
+          "paths": ["/sites/customer.frontend/www/customer.frontend"]
+        }
+      ]
+    }
+  ],
+  "cursor_blink": false,
+  "when_closing_with_no_tabs": "keep_window_open",
+  "buffer_line_height": "comfortable",
+  "agent_buffer_font_size": 16.0,
+  "agent_ui_font_size": 16.0,
+  "ui_font_family": ".ZedSans",
+  "restore_on_startup": "none",
+  "agent": {
+    "default_model": {
+      "provider": "copilot_chat",
+      "model": "claude-sonnet-4.5"
+    }
+  },
+  "jsx_tag_auto_close": {
+    "enabled": false
+  },
+  "project_panel": {
+    "button": false,
+    "dock": "right",
+    "hide_root": true,
+    "starts_open": false
+  },
+  "git_panel": {
+    "button": false,
+    "dock": "right"
+  },
+  "outline_panel": {
+    "button": false,
+    "dock": "right"
+  },
+  "collaboration_panel": {
+    "button": false,
+    "dock": "right"
+  },
+  "diagnostics": {
+    "include_warnings": true,
+    "inline": {
+      "enabled": true,
+      "max_severity": null
+    }
+  },
+  "features": {
+    "edit_prediction_provider": "copilot"
+  },
+  "buffer_font_family": "Berkeley Mono",
+  "buffer_font_features": {
+    "calt": 0
+  },
+  "icon_theme": {
+    "mode": "dark",
+    "light": "Zed (Default)",
+    "dark": "Zed (Default)"
+  },
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
+  },
+  "vim_mode": true,
+  "base_keymap": "Cursor",
+  "ui_font_size": 16,
+  "buffer_font_size": 16.0,
+  "theme": {
+    "mode": "dark",
+    "light": "One Light",
+    "dark": "Catppuccin Frappé - No Italics"
+  },
+  "toolbar": {
+    "breadcrumbs": false,
+    "quick_actions": false
+  },
+  "languages": {
+    "PHP": {
+      "language_servers": ["intelephense", "!phpactor", "!phptools", "..."],
+      "formatter": {
+        "external": {
+          "command": "/Users/vblinden/.formatters/php.sh",
+          "arguments": ["{buffer_path}"]
+        }
+      },
+      "format_on_save": "on"
+    }
+  }
+}

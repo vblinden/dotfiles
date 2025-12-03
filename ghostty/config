@@ -19,3 +19,4 @@ macos-titlebar-proxy-icon = hidden
 cursor-color = F2D5CF
 cursor-text = 000
 
+keybind = shift+enter=text:\x1b\r

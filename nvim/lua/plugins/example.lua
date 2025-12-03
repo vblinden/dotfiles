@@ -13,12 +13,42 @@ return {
   },
 
   {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    opts = {
+      flavour = "frappe",
+      no_italic = true,
+    },
+  },
+
+  {
     "snacks.nvim",
     opts = {
       dashboard = { enabled = false },
       notifier = { enabled = false },
       scroll = { enabled = false },
     },
+  },
+
+  {
+    "nvim-lualine/lualine.nvim",
+    opts = function(_, opts)
+      local icons = LazyVim.config.icons
+
+      opts.sections.lualine_c = {
+        {
+          "diagnostics",
+          symbols = {
+            error = icons.diagnostics.Error,
+            warn = icons.diagnostics.Warn,
+            info = icons.diagnostics.Info,
+            hint = icons.diagnostics.Hint,
+          },
+        },
+      }
+      opts.sections.lualine_y = {}
+      opts.sections.lualine_z = {}
+    end,
   },
 
   {
@@ -41,18 +71,29 @@ return {
   },
 
   {
+    "neovim/nvim-lspconfig",
+    opts = {
+      inlay_hints = {
+        enabled = false,
+      },
+    },
+  },
+
+  {
     "stevearc/conform.nvim",
     opts = {
-      css = { "css_beautify" },
-      javascript = { "prettier" },
-      javascriptreact = { "prettier" },
-      typescript = { "prettier" },
-      typescriptreact = { "prettier" },
-      php = { "pint", "php_cs_fixer", "phpcbf", stop_after_first = false },
-      blade = { "blade-formatter" },
-      twig = { "twig-cs-fixer" },
-      go = { "gofmt" },
-      markdown = { "markdownlint" },
+      formatters_by_ft = {
+        css = { "css_beautify" },
+        javascript = { "prettier" },
+        javascriptreact = { "prettier" },
+        typescript = { "prettier" },
+        typescriptreact = { "prettier" },
+        php = { "pint", "php_cs_fixer", "phpcbf", stop_after_first = false },
+        blade = { "blade-formatter" },
+        twig = { "twig-cs-fixer" },
+        go = { "gofmt" },
+        markdown = { "markdownlint" },
+      },
     },
   },
 }
