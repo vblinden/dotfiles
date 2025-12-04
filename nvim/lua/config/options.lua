@@ -6,6 +6,7 @@ opt.confirm = false -- Don't confirm when exiting modified buffer
 opt.scrolloff = 9
 opt.sidescrolloff = 9
 opt.smoothscroll = false
+opt.relativenumber = false
 
 opt.spelllang = { "en", "nl" }
 
