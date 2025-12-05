@@ -18,5 +18,6 @@ title = " "
 macos-titlebar-proxy-icon = hidden
 cursor-color = F2D5CF
 cursor-text = 000
+bell-features = no-system,no-title
 
 keybind = shift+enter=text:\x1b\r
