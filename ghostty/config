@@ -1,12 +1,12 @@
 shell-integration-features = cursor
-font-family = JetBrains Mono
+font-family = Berkeley Mono
 # background-opacity = 0.85
 # background-blur-radius = 85
 # background = 000000
 font-size = 18
 font-feature = -calt
 adjust-cell-height = 12%
-adjust-cell-width = -1
+# adjust-cell-width = -1
 term = xterm-256color
 adjust-cursor-thickness = 4
 theme = Catppuccin Frappe
