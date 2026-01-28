@@ -55,6 +55,9 @@ ln -s "$DOTFILES/home/gitconfig" "$HOME/.gitconfig"
 rm -rf "$HOME/.gitignore"
 ln -s "$DOTFILES/home/gitignore" "$HOME/.gitignore"
 
+rm -rf "$HOME/.ideavimrc"
+ln -s "$DOTFILES/home/ideavimrc" "$HOME/.ideavimrc"
+
 rm -rf "$HOME/.tmux.conf"
 ln -s "$DOTFILES/tmux/tmux.conf" "$HOME/.tmux.conf"
 
