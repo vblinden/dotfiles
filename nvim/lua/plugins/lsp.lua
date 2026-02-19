@@ -1,18 +1,6 @@
 -- LSP Plugins
 return {
 	{
-		-- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
-		-- used for completion, annotations and signatures of Neovim apis
-		"folke/lazydev.nvim",
-		ft = "lua",
-		opts = {
-			library = {
-				-- Load luvit types when the `vim.uv` word is found
-				{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
-			},
-		},
-	},
-	{
 		-- Main LSP Configuration
 		"neovim/nvim-lspconfig",
 		dependencies = {
@@ -20,7 +8,6 @@ return {
 			-- Mason must be loaded before its dependents so we need to set it up here.
 			-- NOTE: `opts = {}` is the same as calling `require('mason').setup({})`
 			{ "mason-org/mason.nvim", opts = {} },
-			"mason-org/mason-lspconfig.nvim",
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
 
 			-- Useful status updates for LSP.
@@ -87,19 +74,6 @@ return {
 					-- Show the signature of the function you're currently completing.
 					map("<C-k>", vim.diagnostic.open_float, "Signature Documentation")
 
-					-- This function resolves a difference between neovim nightly (version 0.11) and stable (version 0.10)
-					---@param client vim.lsp.Client
-					---@param method vim.lsp.protocol.Method
-					---@param bufnr? integer some lsp support methods only in specific files
-					---@return boolean
-					local function client_supports_method(client, method, bufnr)
-						if vim.fn.has("nvim-0.11") == 1 then
-							return client:supports_method(method, bufnr)
-						else
-							return client.supports_method(method, { bufnr = bufnr })
-						end
-					end
-
 					-- The following two autocommands are used to highlight references of the
 					-- word under your cursor when your cursor rests there for a little while.
 					--    See `:help CursorHold` for information about when this is executed
@@ -108,8 +82,7 @@ return {
 					local client = vim.lsp.get_client_by_id(event.data.client_id)
 					if
 						client
-						and client_supports_method(
-							client,
+						and client:supports_method(
 							vim.lsp.protocol.Methods.textDocument_documentHighlight,
 							event.buf
 						)
@@ -143,7 +116,7 @@ return {
 					-- This may be unwanted, since they displace some of your code
 					if
 						client
-						and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf)
+						and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf)
 					then
 						map("<leader>th", function()
 							vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
@@ -155,30 +128,17 @@ return {
 			-- Diagnostic Config
 			-- See :help vim.diagnostic.Opts
 			vim.diagnostic.config({
+				update_in_insert = false,
 				severity_sort = true,
 				float = { border = "rounded", source = "if_many" },
 				underline = { severity = vim.diagnostic.severity.ERROR },
-				signs = vim.g.have_nerd_font and {
-					text = {
-						[vim.diagnostic.severity.ERROR] = "󰅚 ",
-						[vim.diagnostic.severity.WARN] = "󰀪 ",
-						[vim.diagnostic.severity.INFO] = "󰋽 ",
-						[vim.diagnostic.severity.HINT] = "󰌶 ",
-					},
-				} or {},
-				virtual_text = {
-					source = "if_many",
-					spacing = 2,
-					format = function(diagnostic)
-						local diagnostic_message = {
-							[vim.diagnostic.severity.ERROR] = diagnostic.message,
-							[vim.diagnostic.severity.WARN] = diagnostic.message,
-							[vim.diagnostic.severity.INFO] = diagnostic.message,
-							[vim.diagnostic.severity.HINT] = diagnostic.message,
-						}
-						return diagnostic_message[diagnostic.severity]
-					end,
-				},
+
+				-- Can switch between these as you prefer
+				virtual_text = true, -- Text shows up at the end of the line
+				virtual_lines = false, -- Text shows up underneath the line, with virtual lines
+
+				-- Auto open the float, so you can easily read the errors when jumping with `[d` and `]d`
+				jump = { float = true },
 			})
 
 			-- LSP servers and clients are able to communicate to each other what features they support.
@@ -206,20 +166,8 @@ return {
 				ts_ls = {},
 				html = { filetypes = { "html", "twig", "hbs" } },
 				intelephense = {},
-				lua_ls = {
-					-- cmd = { ... },
-					-- filetypes = { ... },
-					-- capabilities = {},
-					settings = {
-						Lua = {
-							completion = {
-								callSnippet = "Replace",
-							},
-							-- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-							-- diagnostics = { disable = { 'missing-fields' } },
-						},
-					},
-				},
+				-- But for many setups, the LSP (`ts_ls`) will work just fine
+				-- ts_ls = {},
 			}
 
 			-- Ensure the servers and tools above are installed
@@ -230,31 +178,69 @@ return {
 			--
 			-- You can press `g?` for help in this menu.
 			--
-			-- `mason` had to be setup earlier: to configure its options see the
-			-- `dependencies` table for `nvim-lspconfig` above.
-			--
-			-- You can add other tools here that you want Mason to install
-			-- for you, so that they are available from within Neovim.
-			local ensure_installed = vim.tbl_keys(servers or {})
-			vim.list_extend(ensure_installed, {
+			-- NOTE: Use Mason package names here, not LSP server names
+			local ensure_installed = {
+				"gopls",
+				"templ",
+				"typescript-language-server",
+				"html-lsp",
+				"intelephense",
 				"stylua", -- Used to format Lua code
-			})
+				-- You can add other tools here that you want Mason to install
+			}
+
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
-			require("mason-lspconfig").setup({
-				ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
-				automatic_installation = false,
-				handlers = {
-					function(server_name)
-						local server = servers[server_name] or {}
-						-- This handles overriding only values explicitly passed
-						-- by the server configuration above. Useful when disabling
-						-- certain features of an LSP (for example, turning off formatting for ts_ls)
-						server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-						require("lspconfig")[server_name].setup(server)
-					end,
+			-- Setup each LSP server
+			for name, server in pairs(servers) do
+				server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+				vim.lsp.config(name, server)
+				vim.lsp.enable(name)
+			end
+
+			vim.lsp.config("lua_ls", {
+				on_init = function(client)
+					if client.workspace_folders then
+						local path = client.workspace_folders[1].name
+						if
+							path ~= vim.fn.stdpath("config")
+							and (vim.uv.fs_stat(path .. "/.luarc.json") or vim.uv.fs_stat(path .. "/.luarc.jsonc"))
+						then
+							return
+						end
+					end
+
+					client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua, {
+						runtime = {
+							version = "LuaJIT",
+							path = {
+								"lua/?.lua",
+								"lua/?/init.lua",
+							},
+						},
+						-- Make the server aware of Neovim runtime files
+						workspace = {
+							checkThirdParty = false,
+							-- NOTE: this is a lot slower and will cause issues when working on your own configuration.
+							-- See https://github.com/neovim/nvim-lspconfig/issues/3189
+							library = vim.api.nvim_get_runtime_file("", true),
+							--
+							-- Alternatively:
+							-- library = {
+							--   vim.env.VIMRUNTIME,
+							--   -- Depending on the usage, you might want to add additional paths
+							--   -- here.
+							--   -- '${3rd}/luv/library',
+							--   -- '${3rd}/busted/library',
+							-- },
+						},
+					})
+				end,
+				settings = {
+					Lua = {},
 				},
 			})
+			vim.lsp.enable("lua_ls")
 		end,
 	},
 }

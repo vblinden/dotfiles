@@ -5,7 +5,7 @@ vim.g.fugitive_gitlab_domains = {
 
 return {
 	-- Detect tabstop and shiftwidth automatically
-	"nmac427/guess-indent.nvim",
+	{ "nmac427/guess-indent.nvim", opts = {} },
 
 	-- Git related
 	"tpope/vim-rhubarb",
@@ -24,7 +24,7 @@ return {
 
 	-- Collection of various small independent plugins/modules
 	{
-		"echasnovski/mini.nvim",
+		"nvim-mini/mini.nvim",
 		config = function()
 			-- Better Around/Inside textobjects
 			--
@@ -77,8 +77,8 @@ return {
 				return (br ~= "" and br or "")
 			end
 
-			-- ... and there is more!
-			--  Check out: https://github.com/echasnovski/mini.nvim
+		-- ... and there is more!
+		--  Check out: https://github.com/nvim-mini/mini.nvim
 		end,
 	},
 }

@@ -76,3 +76,7 @@ ln -s "$DOTFILES/gitui" "$HOME/.config/gitui"
 mkdir -p "$HOME/.config/ghostty"
 rm -rf "$HOME/.config/ghostty/config"
 ln -s "$DOTFILES/ghostty/config" "$HOME/.config/ghostty/config"
+
+mkdir -p "$HOME/.formatters"
+rm -rf "$HOME/.formatters"
+ln -s "$DOTFILES/zed/formatters" "$HOME/.formatters"
