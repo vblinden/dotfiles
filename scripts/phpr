@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+if [ $# -lt 2 ]; then
+  echo "Usage: phpr 8.4 your-command-here"
+  exit 1
+fi
+
+version="$1"
+shift
+
+"/opt/homebrew/opt/php@$version/bin/php" "$@"

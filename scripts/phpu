@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+if [[ -z "$1" ]]; then
+  echo "Usage: phpu 8.3 (or 8.2, 8.1, 7.4, etc.)"
+  echo ""
+  echo "Installed versions:"
+  brew list --formula | grep '^php@' | sed 's/php@//'
+  exit 1
+fi
+
+version="$1"
+
+# Unlink current php (ignores error if none linked)
+brew unlink php >/dev/null 2>&1
+
+while IFS= read -r installed_php; do
+  brew unlink "$installed_php" >/dev/null 2>&1
+done < <(brew list --formula | grep '^php@')
+
+# Link the requested version
+if brew link --force --overwrite "php@$version" >/dev/null 2>&1; then
+  :
+elif brew link --force --overwrite "shivammathur/php/php@$version" >/dev/null 2>&1; then
+  :
+else
+  echo "Error: Could not link php@$version"
+  echo "Try one of:"
+  echo "  brew install php@$version"
+  echo "  brew install shivammathur/php/php@$version"
+  exit 1
+fi
+
+# Show confirmation
+php -v | head -n 1

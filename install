@@ -29,6 +29,8 @@ elif [[ "$(uname -s)" == "Darwin" ]]; then
 	brew install ghostty
 fi
 
+brew tap shivammathur/php
+
 brew install \
 	neovim \
 	fd \
@@ -64,6 +66,14 @@ ln -s "$DOTFILES/tmux/tmux.conf" "$HOME/.tmux.conf"
 mkdir -p "$HOME/.local/bin"
 rm -rf "$HOME/.local/bin/t"
 ln -s "$DOTFILES/scripts/t" "$HOME/.local/bin/t"
+rm -rf "$HOME/.local/bin/phpr"
+ln -s "$DOTFILES/scripts/phpr" "$HOME/.local/bin/phpr"
+rm -rf "$HOME/.local/bin/phpu"
+ln -s "$DOTFILES/scripts/phpu" "$HOME/.local/bin/phpu"
+
+chmod +x "$DOTFILES/scripts/t"
+chmod +x "$DOTFILES/scripts/phpr"
+chmod +x "$DOTFILES/scripts/phpu"
 
 mkdir -p "$HOME/.config/nvim"
 rm -rf "$HOME/.config/nvim"

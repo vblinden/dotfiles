@@ -1,8 +1,8 @@
-:root,
+/* :root,
 .monaco-workbench {
-    --vscode-font-family: "Geist Mono", system-ui !important;
-    font-family: "Geist Mono", system-ui !important;
-}
+    --vscode-font-family: "Berkeley Mono", system-ui !important;
+    font-family: "Berkeley Mono", system-ui !important;
+} */
 
 .editor-group-watermark {
     display: none !important;
