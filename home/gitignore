@@ -10,5 +10,7 @@
 .php-cs-fixer.cache
 .claude/
 CLAUDE.md
+AGENTS.md
+.cursor/
 .cursorignore
 .phpactor.json
