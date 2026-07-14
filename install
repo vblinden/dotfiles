@@ -25,7 +25,12 @@ elif [[ "$(uname -s)" == "Darwin" ]]; then
 	defaults write NSGlobalDomain InitialKeyRepeat -int 12
 	defaults write -g ApplePressAndHoldEnabled -bool false
 
-	# brew install --cask nikitabobko/tap/aerospace
+	# Disable Spotlight indexing on ~/Code to avoid slow file watchers on large trees.
+	if [[ -d "$HOME/Code" ]]; then
+		sudo mdutil -i off "$HOME/Code"
+	fi
+
+	# Aerospace window manager removed; using Ghostty as the macOS terminal.
 	brew install ghostty
 fi
 
@@ -46,6 +51,10 @@ brew install \
 
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
 	curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sh
+fi
+
+if ! command -v grok &>/dev/null && [[ ! -x "$HOME/.grok/bin/grok" ]]; then
+	curl -fsSL https://x.ai/cli/install.sh | bash
 fi
 
 rm -rf "$HOME/.zshrc"
