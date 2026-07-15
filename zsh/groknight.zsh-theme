@@ -7,10 +7,9 @@
 #   amber    #e0af68
 #   muted    #6c6c6c
 
-# ◆  folder  on branch*  ›
+# folder  on branch*  ›
 # Only the last path segment (current directory name)
-PROMPT='%(?:%F{#bb9af7}%1{◆%}:%F{#f7768e}%1{◆%}) '
-PROMPT+='%B%F{#bb9af7}%1~%f%b'
+PROMPT='%B%F{#bb9af7}%1~%f%b'
 PROMPT+='$(git_prompt_info)'
 PROMPT+=' %(?:%F{#bb9af7}:%F{#f7768e})%1{›%}%f '
 
