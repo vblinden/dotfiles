@@ -53,9 +53,17 @@ if [ ! -d "$HOME/.oh-my-zsh" ]; then
 	curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sh
 fi
 
+mkdir -p "$HOME/.oh-my-zsh/custom/themes"
+rm -rf "$HOME/.oh-my-zsh/custom/themes/groknight.zsh-theme"
+ln -s "$DOTFILES/zsh/groknight.zsh-theme" "$HOME/.oh-my-zsh/custom/themes/groknight.zsh-theme"
+
 if ! command -v grok &>/dev/null && [[ ! -x "$HOME/.grok/bin/grok" ]]; then
 	curl -fsSL https://x.ai/cli/install.sh | bash
 fi
+
+mkdir -p "$HOME/.grok"
+rm -rf "$HOME/.grok/config.toml"
+ln -s "$DOTFILES/grok/config.toml" "$HOME/.grok/config.toml"
 
 rm -rf "$HOME/.zshrc"
 ln -s "$DOTFILES/home/zshrc" "$HOME/.zshrc"
@@ -95,6 +103,8 @@ ln -s "$DOTFILES/gitui" "$HOME/.config/gitui"
 mkdir -p "$HOME/.config/ghostty"
 rm -rf "$HOME/.config/ghostty/config"
 ln -s "$DOTFILES/ghostty/config" "$HOME/.config/ghostty/config"
+rm -rf "$HOME/.config/ghostty/themes"
+ln -s "$DOTFILES/ghostty/themes" "$HOME/.config/ghostty/themes"
 
 mkdir -p "$HOME/.config/vscode"
 rm -rf "$HOME/.config/vscode"

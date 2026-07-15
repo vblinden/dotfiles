@@ -1,11 +1,17 @@
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-ZSH_THEME="robbyrussell"
+ZSH_THEME="groknight"
 
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
+
+# GrokNight ls colors (override oh-my-zsh defaults)
+# LSCOLORS = BSD/macOS ls (-G); LS_COLORS = GNU ls / eza / tree / fd / etc.
+export CLICOLOR=1
+export LSCOLORS="FxExcxdxCxegedabagacad"
+export LS_COLORS="di=1;38;2;187;154;247:ln=1;38;2;122;162;247:so=38;2;26;188;156:pi=38;2;224;175;104:ex=1;38;2;158;206;106:bd=1;38;2;122;162;247:cd=1;38;2;122;162;247:su=1;38;2;247;118;142:sg=1;38;2;224;175;104:tw=1;38;2;158;206;106:ow=1;38;2;224;175;104:or=1;38;2;247;118;142:mi=1;38;2;247;118;142:*.md=38;2;200;200;200:*.json=38;2;224;175;104:*.yml=38;2;224;175;104:*.yaml=38;2;224;175;104:*.toml=38;2;224;175;104:*.php=38;2;187;154;247:*.py=38;2;158;206;106:*.rs=38;2;122;162;247:*.go=38;2;122;162;247:*.ts=38;2;122;162;247:*.tsx=38;2;122;162;247:*.js=38;2;224;175;104:*.jsx=38;2;224;175;104:*.sh=38;2;158;206;106:*.zsh=38;2;158;206;106:*.lua=38;2;122;162;247"
 
 # History settings.
 HISTFILE=$HOME/.zsh_history
@@ -50,9 +56,9 @@ kubeshop() {
   echo "KUBECONFIG set to: $KUBECONFIG"
 }
 
-
-export PATH="$HOME/.local/bin":$PATH
+export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.composer/vendor/bin:$PATH"
+export PATH="$HOME/.config/composer/vendor/bin:$PATH"
 export PATH="$HOME/go/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 
@@ -88,7 +94,17 @@ eval "$(fnm env --use-on-cd)"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.opencode/bin:$PATH"
 export PATH="$HOME/.grok/bin:$PATH"
+export PATH="$HOME/.local/share/lerd/bin:$PATH"
 
 # export PATH="/opt/homebrew/opt/php@8.4/bin:$PATH"
 # export PATH="/opt/homebrew/opt/php@8.4/sbin:$PATH"
 export PATH="/opt/homebrew/opt/python@3.11/bin:$PATH"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# Completions (fpath first, then a single compinit)
+fpath=(~/.grok/completions/zsh /Users/vblinden/.local/share/zsh/site-functions $fpath)
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+autoload -Uz compinit && compinit -C
