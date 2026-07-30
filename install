@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
 DOTFILES=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
@@ -26,28 +27,15 @@ elif [[ "$(uname -s)" == "Darwin" ]]; then
 	defaults write -g ApplePressAndHoldEnabled -bool false
 
 	# Disable Spotlight indexing on ~/Code to avoid slow file watchers on large trees.
-	if [[ -d "$HOME/Code" ]]; then
-		sudo mdutil -i off "$HOME/Code"
+	if [[ -d "$HOME/Code" ]] && [[ -t 0 ]]; then
+		sudo mdutil -i off "$HOME/Code" || true
 	fi
-
-	# Aerospace window manager removed; using Ghostty as the macOS terminal.
-	brew install ghostty
 fi
 
 brew tap shivammathur/php
 
-brew install \
-	neovim \
-	fd \
-	fzf \
-	ripgrep \
-	git \
-	gitui \
-	tmux \
-	fnm \
-	lua \
-	php \
-	composer
+# Packages from Brewfile (modern CLI tools + core dev stack)
+brew bundle --file="$DOTFILES/Brewfile"
 
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
 	curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sh
@@ -57,13 +45,19 @@ mkdir -p "$HOME/.oh-my-zsh/custom/themes"
 rm -rf "$HOME/.oh-my-zsh/custom/themes/groknight.zsh-theme"
 ln -s "$DOTFILES/zsh/groknight.zsh-theme" "$HOME/.oh-my-zsh/custom/themes/groknight.zsh-theme"
 
-if ! command -v grok &>/dev/null && [[ ! -x "$HOME/.grok/bin/grok" ]]; then
-	curl -fsSL https://x.ai/cli/install.sh | bash
-fi
+# Always install/update Grok CLI
+echo "Installing Grok CLI..."
+curl -fsSL https://x.ai/cli/install.sh | bash
 
 mkdir -p "$HOME/.grok"
 rm -rf "$HOME/.grok/config.toml"
 ln -s "$DOTFILES/grok/config.toml" "$HOME/.grok/config.toml"
+
+# Ensure grok is on PATH for this install session
+export PATH="$HOME/.grok/bin:$PATH"
+
+# Optional: local custom dir skeleton
+mkdir -p "$HOME/.dotfiles-custom/shell"
 
 rm -rf "$HOME/.zshrc"
 ln -s "$DOTFILES/home/zshrc" "$HOME/.zshrc"
@@ -74,8 +68,10 @@ ln -s "$DOTFILES/home/gitconfig" "$HOME/.gitconfig"
 rm -rf "$HOME/.gitignore"
 ln -s "$DOTFILES/home/gitignore" "$HOME/.gitignore"
 
-rm -rf "$HOME/.ideavimrc"
-ln -s "$DOTFILES/home/ideavimrc" "$HOME/.ideavimrc"
+if [[ -f "$DOTFILES/home/ideavimrc" ]]; then
+	rm -rf "$HOME/.ideavimrc"
+	ln -s "$DOTFILES/home/ideavimrc" "$HOME/.ideavimrc"
+fi
 
 rm -rf "$HOME/.tmux.conf"
 ln -s "$DOTFILES/tmux/tmux.conf" "$HOME/.tmux.conf"
@@ -109,3 +105,13 @@ ln -s "$DOTFILES/ghostty/themes" "$HOME/.config/ghostty/themes"
 mkdir -p "$HOME/.config/vscode"
 rm -rf "$HOME/.config/vscode"
 ln -s "$DOTFILES/vscode" "$HOME/.config/vscode"
+
+echo ""
+echo "Dotfiles installed from $DOTFILES"
+if command -v grok &>/dev/null || [[ -x "$HOME/.grok/bin/grok" ]]; then
+	echo "Grok CLI: $("$HOME/.grok/bin/grok" --version 2>/dev/null || grok --version 2>/dev/null || echo installed)"
+else
+	echo "Warning: Grok CLI not found after install"
+fi
+echo "Open a new shell (or: source ~/.zshrc) to pick up zoxide, eza, bat, etc."
+echo "Machine-local overrides: ~/.dotfiles-custom/shell/"

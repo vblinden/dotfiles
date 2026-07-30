@@ -7,104 +7,47 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
-# GrokNight ls colors (override oh-my-zsh defaults)
-# LSCOLORS = BSD/macOS ls (-G); LS_COLORS = GNU ls / eza / tree / fd / etc.
-export CLICOLOR=1
-export LSCOLORS="FxExcxdxCxegedabagacad"
-export LS_COLORS="di=1;38;2;187;154;247:ln=1;38;2;122;162;247:so=38;2;26;188;156:pi=38;2;224;175;104:ex=1;38;2;158;206;106:bd=1;38;2;122;162;247:cd=1;38;2;122;162;247:su=1;38;2;247;118;142:sg=1;38;2;224;175;104:tw=1;38;2;158;206;106:ow=1;38;2;224;175;104:or=1;38;2;247;118;142:mi=1;38;2;247;118;142:*.md=38;2;200;200;200:*.json=38;2;224;175;104:*.yml=38;2;224;175;104:*.yaml=38;2;224;175;104:*.toml=38;2;224;175;104:*.php=38;2;187;154;247:*.py=38;2;158;206;106:*.rs=38;2;122;162;247:*.go=38;2;122;162;247:*.ts=38;2;122;162;247:*.tsx=38;2;122;162;247:*.js=38;2;224;175;104:*.jsx=38;2;224;175;104:*.sh=38;2;158;206;106:*.zsh=38;2;158;206;106:*.lua=38;2;122;162;247"
+# Resolve dotfiles root (install symlinks home/zshrc -> this file)
+if [[ -L "$HOME/.zshrc" ]]; then
+  DOTFILES="$(cd "$(dirname "$(readlink "$HOME/.zshrc")")/.." && pwd)"
+else
+  DOTFILES="${DOTFILES:-$HOME/Code/vblinden/dotfiles}"
+fi
 
-# History settings.
-HISTFILE=$HOME/.zsh_history
-HISTSIZE=50000
-SAVEHIST=50000
+# Core shell config (split for clarity)
+[[ -f "$DOTFILES/zsh/exports.zsh" ]] && source "$DOTFILES/zsh/exports.zsh"
+[[ -f "$DOTFILES/zsh/aliases.zsh" ]] && source "$DOTFILES/zsh/aliases.zsh"
+[[ -f "$DOTFILES/zsh/functions.zsh" ]] && source "$DOTFILES/zsh/functions.zsh"
 
-setopt INC_APPEND_HISTORY # Immediately append to history file:
-setopt EXTENDED_HISTORY # Record timestamp in history:
-setopt HIST_EXPIRE_DUPS_FIRST # Expire duplicate entries first when trimming history:
-setopt HIST_IGNORE_DUPS # Dont record an entry that was just recorded again:
-setopt HIST_IGNORE_ALL_DUPS # Delete old recorded entry if new entry is a duplicate:
-setopt HIST_FIND_NO_DUPS # Do not display a line previously found:
-setopt HIST_IGNORE_SPACE # Dont record an entry starting with a space:
-setopt HIST_SAVE_NO_DUPS # Dont write duplicate entries in the history file:
-setopt SHARE_HISTORY # Share history between all sessions:
-
-# Execute commands using history (e.g.: using !$) immediatel:
-unsetopt HIST_VERIFY
-
-export LANG=en_US.UTF-8
-export EDITOR=nvim
-
-alias vim="nvim"
-alias lg="gitui"
-alias search="rg -i -uuu --no-ignore"
-alias nvm="fnm"
-alias uuid='uuidgen | tr "[:upper:]" "[:lower:]"'
-alias claer="clear"
-
-kube() {
-  export KUBECONFIG="$HOME/Code/kube/personal.yml"
-  echo "KUBECONFIG set to: $KUBECONFIG"
-}
-
-kubeuxd() {
-  export KUBECONFIG="$HOME/Code/kube/uxd.yml"
-  echo "KUBECONFIG set to: $KUBECONFIG"
-}
-
-kubeshop() {
-  export KUBECONFIG="$HOME/Code/kube/wlshop.yml"
-  echo "KUBECONFIG set to: $KUBECONFIG"
-}
-
-export PATH="$HOME/.local/bin:$PATH"
-export PATH="$HOME/.composer/vendor/bin:$PATH"
-export PATH="$HOME/.config/composer/vendor/bin:$PATH"
-export PATH="$HOME/go/bin:$PATH"
-export PATH="$HOME/.cargo/bin:$PATH"
-
+# Secrets (never committed)
 if [[ -f ~/.secrets ]]; then
   source ~/.secrets
 fi
 
-# We are on macOS...
-if [[ $(uname) == "Darwin" ]]; then
-  alias kubectl-uxd="kubectl --kubeconfig=$HOME/Code/kube/uxd.yaml --insecure-skip-tls-verify"
-  alias k9s="k9s --kubeconfig ~/Code/kube/personal.yml"
-  alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
-  alias phpcsfixer='for file in $(git diff --name-only HEAD | grep "\.php$"); do PHP_CS_FIXER_IGNORE_ENV=1 vendor/bin/php-cs-fixer fix "$file"; done'
-  alias phprec='vendor/bin/rector process $(git diff --name-only HEAD | paste -sd " " -)'
-  alias phpfix='phpcsfixer && phprec'
+# Machine-local overrides (not committed)
+# Create ~/.dotfiles-custom/shell/{exports,aliases,functions,zshrc}.zsh as needed
+for file in ~/.dotfiles-custom/shell/{exports,aliases,functions,zshrc}.zsh; do
+  [[ -r "$file" ]] && source "$file"
+done
 
+# Platform paths
+if [[ $(uname) == "Darwin" ]]; then
   export PATH="/opt/homebrew/bin:$PATH"
   export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
   export PATH="/opt/homebrew/opt/ruby/bin:/usr/local/lib/ruby/gems/3.1.0/bin:$PATH"
-
-# We are on Linux...
-elif command -v apt > /dev/null; then
+  export PATH="/opt/homebrew/opt/python@3.11/bin:$PATH"
+elif command -v apt >/dev/null; then
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-
-# Unknown OS...
 else
   echo 'Unknown OS!'
 fi
 
 # FNM (fast node manager)
-eval "$(fnm env --use-on-cd)"
+if command -v fnm &>/dev/null; then
+  eval "$(fnm env --use-on-cd)"
+fi
 
-export PATH="$HOME/.local/bin:$PATH"
-export PATH="$HOME/.opencode/bin:$PATH"
-export PATH="$HOME/.grok/bin:$PATH"
-export PATH="$HOME/.local/share/lerd/bin:$PATH"
-
-# export PATH="/opt/homebrew/opt/php@8.4/bin:$PATH"
-# export PATH="/opt/homebrew/opt/php@8.4/sbin:$PATH"
-export PATH="/opt/homebrew/opt/python@3.11/bin:$PATH"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
-# Completions (fpath first, then a single compinit)
-fpath=(~/.grok/completions/zsh /Users/vblinden/.local/share/zsh/site-functions $fpath)
-[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
-autoload -Uz compinit && compinit -C
+# Zoxide (smart cd)
+if command -v zoxide &>/dev/null; then
+  eval "$(zoxide init zsh)"
+fi
