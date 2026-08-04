@@ -62,6 +62,11 @@ alias gy="grok --always-approve"
 alias c="grok"
 alias cy="grok --always-approve"
 
+# OpenCode CLI
+if command -v opencode &>/dev/null; then
+  alias oc="opencode"
+fi
+
 # Everyday utilities
 alias hostfile="sudo \${EDITOR:-nvim} /etc/hosts"
 alias sshconfig="\${EDITOR:-nvim} ~/.ssh/config"

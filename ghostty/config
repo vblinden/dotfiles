@@ -1,9 +1,9 @@
 shell-integration-features = cursor
-font-family = Berkeley Mono
+font-family = JetBrains Mono
 # background-opacity = 0.85
 # background-blur-radius = 85
 # background = 000000
-font-size = 18
+font-size = 14
 font-feature = -calt
 # adjust-cell-height = 12%
 # adjust-cell-width = -1

@@ -57,6 +57,13 @@ ln -s "$DOTFILES/grok/config.toml" "$HOME/.grok/config.toml"
 # Ensure grok is on PATH for this install session
 export PATH="$HOME/.grok/bin:$PATH"
 
+# Always install/update OpenCode CLI
+echo "Installing OpenCode CLI..."
+curl -fsSL https://opencode.ai/install | bash
+
+# Ensure opencode is on PATH for this install session
+export PATH="$HOME/.opencode/bin:$PATH"
+
 # Optional: local custom dir skeleton
 mkdir -p "$HOME/.dotfiles-custom/shell"
 

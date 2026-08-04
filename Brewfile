@@ -23,3 +23,5 @@ brew "composer"
 
 # Terminal
 cask "ghostty"
+
+# AI (opencode installed via curl in install script)
