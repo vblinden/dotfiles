@@ -114,6 +114,10 @@ mkdir -p "$HOME/.config/vscode"
 rm -rf "$HOME/.config/vscode"
 ln -s "$DOTFILES/vscode" "$HOME/.config/vscode"
 
+mkdir -p "$HOME/.config/opencode"
+rm -rf "$HOME/.config/opencode/opencode.json"
+ln -s "$DOTFILES/opencode.json" "$HOME/.config/opencode/opencode.json"
+
 echo ""
 echo "Dotfiles installed from $DOTFILES"
 if command -v grok &>/dev/null || [[ -x "$HOME/.grok/bin/grok" ]]; then
