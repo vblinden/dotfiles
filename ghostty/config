@@ -21,4 +21,7 @@ cursor-text = 141414
 bell-features = no-system,no-title
 progress-style = false
 
-keybind = shift+enter=text:\x1b\r
+# shift+enter -> CSI-u extended key sequence for shift+enter.
+# Sent through tmux (extended-keys on, csi-u format) so Pi's default
+# `shift+enter` binding inserts a newline instead of submitting.
+keybind = shift+enter=text:\x1b[13;2u

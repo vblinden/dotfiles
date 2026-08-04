@@ -51,3 +51,12 @@ fi
 if command -v zoxide &>/dev/null; then
   eval "$(zoxide init zsh)"
 fi
+
+# >>> grok installer >>>
+export PATH="$HOME/.grok/bin:$PATH"
+fpath=(~/.grok/completions/zsh $fpath)
+autoload -Uz compinit && compinit -C
+# <<< grok installer <<<
+
+# Pi
+export PATH="/Users/vblinden/.local/share/fnm/node-versions/v24.18.1/installation/bin:$PATH"

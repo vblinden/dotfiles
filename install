@@ -26,9 +26,10 @@ elif [[ "$(uname -s)" == "Darwin" ]]; then
 	defaults write NSGlobalDomain InitialKeyRepeat -int 12
 	defaults write -g ApplePressAndHoldEnabled -bool false
 
-	# Disable Spotlight indexing on ~/Code to avoid slow file watchers on large trees.
-	if [[ -d "$HOME/Code" ]] && [[ -t 0 ]]; then
-		sudo mdutil -i off "$HOME/Code" || true
+	# Discourage Spotlight from indexing ~/Code (no sudo; mdutil -i off fails on
+	# arbitrary dirs with "invalid operation" / "unknown indexing state" on modern macOS).
+	if [[ -d "$HOME/Code" ]]; then
+		touch "$HOME/Code/.metadata_never_index" 2>/dev/null || true
 	fi
 fi
 
