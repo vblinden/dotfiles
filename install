@@ -125,5 +125,10 @@ if command -v grok &>/dev/null || [[ -x "$HOME/.grok/bin/grok" ]]; then
 else
 	echo "Warning: Grok CLI not found after install"
 fi
+if command -v opencode &>/dev/null || [[ -x "$HOME/.opencode/bin/opencode" ]]; then
+	echo "OpenCode CLI: $("$HOME/.opencode/bin/opencode" --version 2>/dev/null || opencode --version 2>/dev/null || echo installed)"
+else
+	echo "Warning: OpenCode CLI not found after install"
+fi
 echo "Open a new shell (or: source ~/.zshrc) to pick up zoxide, eza, bat, etc."
 echo "Machine-local overrides: ~/.dotfiles-custom/shell/"
