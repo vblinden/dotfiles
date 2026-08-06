@@ -20,8 +20,8 @@ brew "tmux"
 brew "lua"
 brew "php"
 brew "composer"
+# Required by nvim-treesitter (main) to compile language parsers
+brew "tree-sitter-cli"
 
 # Terminal
 cask "ghostty"
-
-# AI (opencode installed via curl in install script)

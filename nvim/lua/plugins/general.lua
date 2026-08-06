@@ -5,7 +5,15 @@ vim.g.fugitive_gitlab_domains = {
 
 return {
 	-- Detect tabstop and shiftwidth automatically
-	{ "nmac427/guess-indent.nvim", opts = {} },
+	{ "NMAC427/guess-indent.nvim", opts = {} },
+
+	-- Highlight todo, notes, etc in comments
+	{
+		"folke/todo-comments.nvim",
+		event = "VimEnter",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		opts = { signs = false },
+	},
 
 	-- Git related
 	"tpope/vim-rhubarb",
@@ -18,7 +26,7 @@ return {
 		config = function()
 			vim.keymap.set("n", "<leader>df", "<cmd>:DiffviewFileHistory %<CR>", { desc = "[D]iff [F]ile" })
 			vim.keymap.set("n", "<leader>dq", "<cmd>:DiffviewClose<CR>", { desc = "[D]iff [Q]uit" })
-			vim.keymap.set("n", "<leader>do", "<cmd>:DiffviewOpen<CR>", { desc = "[D]iff [F]ile" })
+			vim.keymap.set("n", "<leader>do", "<cmd>:DiffviewOpen<CR>", { desc = "[D]iff [O]pen" })
 		end,
 	},
 
@@ -26,13 +34,27 @@ return {
 	{
 		"nvim-mini/mini.nvim",
 		config = function()
+			-- Icons (also mocks nvim-web-devicons for plugins that still expect it)
+			if vim.g.have_nerd_font then
+				require("mini.icons").setup()
+				MiniIcons.mock_nvim_web_devicons()
+			end
+
 			-- Better Around/Inside textobjects
 			--
 			-- Examples:
 			--  - va)  - [V]isually select [A]round [)]paren
-			--  - yinq - [Y]ank [I]nside [N]ext [Q]uote
+			--  - yiiq - [Y]ank [I]nside [I]+1 [Q]uote
 			--  - ci'  - [C]hange [I]nside [']quote
-			require("mini.ai").setup({ n_lines = 500 })
+			require("mini.ai").setup({
+				-- Avoid conflicts with built-in incremental selection mappings on Neovim>=0.12
+				-- (see `:help treesitter-incremental-selection`)
+				mappings = {
+					around_next = "aa",
+					inside_next = "ii",
+				},
+				n_lines = 500,
+			})
 
 			-- Add/delete/replace surroundings (brackets, quotes, etc.)
 			--
@@ -42,15 +64,10 @@ return {
 			require("mini.surround").setup()
 
 			-- Simple and easy statusline.
-			--  You could remove this setup call if you don't like it,
-			--  and try some other statusline plugin
 			local statusline = require("mini.statusline")
-			-- set use_icons to true if you have a Nerd Font
-			statusline.setup({ use_icons = false })
+			statusline.setup({ use_icons = vim.g.have_nerd_font })
 
-			-- You can configure sections in the statusline by overriding their
-			-- default behavior. For example, here we set the section for
-			-- cursor location to LINE:COLUMN
+			-- Cursor location as LINE:COLUMN
 			---@diagnostic disable-next-line: duplicate-set-field
 			statusline.section_location = function()
 				return "%2l:%-2v"
@@ -77,8 +94,8 @@ return {
 				return (br ~= "" and br or "")
 			end
 
-		-- ... and there is more!
-		--  Check out: https://github.com/nvim-mini/mini.nvim
+			-- ... and there is more!
+			--  Check out: https://github.com/nvim-mini/mini.nvim
 		end,
 	},
 }

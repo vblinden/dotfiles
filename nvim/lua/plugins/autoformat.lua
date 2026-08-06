@@ -25,14 +25,18 @@ return {
 		{
 			"<leader>f",
 			function()
-				require("conform").format({ async = true, lsp_format = "fallback" })
+				require("conform").format({ async = true })
 			end,
-			mode = "",
+			mode = { "n", "v" },
 			desc = "[F]ormat buffer",
 		},
 	},
 	opts = {
 		notify_on_error = false,
+		default_format_opts = {
+			-- Use external formatters if configured below, otherwise use LSP formatting.
+			lsp_format = "fallback",
+		},
 		format_on_save = function(bufnr)
 			-- Disable with a global or buffer-local variable
 			if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
@@ -45,13 +49,13 @@ return {
 			local disable_filetypes = { c = true, cpp = true }
 			if disable_filetypes[vim.bo[bufnr].filetype] then
 				return nil
-			else
-				return {
-					timeout_ms = 1000,
-					lsp_format = "fallback",
-				}
 			end
+
+			return {
+				timeout_ms = 1000,
+			}
 		end,
+		-- You can also specify external formatters here.
 		formatters_by_ft = {
 			lua = { "stylua" },
 			css = { "css_beautify" },

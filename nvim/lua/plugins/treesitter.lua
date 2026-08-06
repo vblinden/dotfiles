@@ -1,116 +1,138 @@
-local branch = "main"
-
---- Register parsers from opts.ensure_installed
-local function register(ensure_installed)
-	for filetype, parser in pairs(ensure_installed) do
-		local filetypes = vim.treesitter.language.get_filetypes(parser)
-		if not vim.tbl_contains(filetypes, filetype) then
-			table.insert(filetypes, filetype)
-		end
-
-		-- register and start parsers for filetypes
-		vim.treesitter.language.register(parser, filetypes)
-	end
-end
-
---- Install and start parsers for nvim-treesitter.
-local function install_and_start()
-	-- Auto-install and start treesitter parser for any buffer with a registered filetype
-	vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
-		callback = function(event)
-			local bufnr = event.buf
-			local filetype = vim.api.nvim_get_option_value("filetype", { buf = bufnr })
-
-			-- Skip if no filetype
-			if filetype == "" then
-				return
-			end
-
-			-- Get parser name based on filetype
-			local parser_name = vim.treesitter.language.get_lang(filetype) -- WARNING: might return filetype (not helpful)
-			if not parser_name then
-				-- vim.notify(
-				--   "Filetype " .. vim.inspect(filetype) .. " has no parser registered",
-				--   vim.log.levels.WARN,
-				--   { title = "core/treesitter" }
-				-- )
-				return
-			end
-
-			-- vim.notify(
-			--   vim.inspect("Successfully got parser " .. parser_name .. " for filetype " .. filetype),
-			--   vim.log.levels.DEBUG,
-			--   { title = "core/treesitter" }
-			-- )
-
-			-- Check if parser_name is available in parser configs
-			local parser_configs = require("nvim-treesitter.parsers")
-			local parser_can_be_used = nil
-			if branch == "master" then
-				parser_can_be_used = parser_configs.list[parser_name]
-			elseif branch == "main" then
-				parser_can_be_used = parser_configs[parser_name]
-			end
-			if not parser_can_be_used then
-				-- vim.notify(
-				--   "Parser config does not have parser " .. vim.inspect(parser_name) .. ", skipping",
-				--   vim.log.levels.WARN,
-				--   { title = "core/treesitter" }
-				-- )
-				return -- Parser not ailable, skip silently
-			end
-
-			local parser_installed = pcall(vim.treesitter.get_parser, bufnr, parser_name)
-
-			-- If not installed, install parser synchronously
-			if not parser_installed then
-				if branch == "master" then
-					vim.cmd("TSInstallSync " .. parser_name)
-				elseif branch == "main" then
-					require("nvim-treesitter").install({ parser_name }):wait(30000) -- main branch syntax
-				end
-				-- vim.notify("Installed parser: " .. parser_name, vim.log.levels.INFO, { title = "core/treesitter" })
-			end
-
-			-- Check so tree-sitter can see the newly installed parser
-			parser_installed = pcall(vim.treesitter.get_parser, bufnr, parser_name)
-			if not parser_installed then
-				vim.notify(
-					"Failed to get parser for " .. parser_name .. " after installation",
-					vim.log.levels.WARN,
-					{ title = "core/treesitter" }
-				)
-				return
-			end
-
-			-- Start treesitter for this buffer
-			vim.treesitter.start(bufnr, parser_name)
-		end,
-	})
-end
+-- [[ Configure Treesitter ]]
+-- Used to highlight, edit, and navigate code
+-- See `:help nvim-treesitter-intro`
+--
+-- nvim-treesitter (main) compiles parsers with the `tree-sitter` CLI.
+-- Installs must not block the UI: never call :wait(), and avoid concurrent
+-- install of the same language (that path uses a blocking vim.wait).
 
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
-		lazy = true,
-		event = "BufRead",
-		branch = branch,
+		branch = "main",
+		lazy = false,
 		build = ":TSUpdate",
-		---@class TSConfig
-		opts = {
-			ensure_installed = {},
-		},
-		config = function(_, opts)
-			-- Register parsers from opts.ensure_installed
-			register(opts.ensure_installed)
+		config = function()
+			local ts = require("nvim-treesitter")
 
-			-- Create autocmd which installs and starts parsers.
-			install_and_start()
+			-- Core parsers + languages used often in this setup
+			local ensure = {
+				"bash",
+				"c",
+				"diff",
+				"html",
+				"lua",
+				"luadoc",
+				"markdown",
+				"markdown_inline",
+				"query",
+				"vim",
+				"vimdoc",
+				"php",
+				"javascript",
+				"typescript",
+				"tsx",
+				"go",
+				"json",
+				"yaml",
+				"toml",
+				"css",
+			}
 
-			-- debugging
-			-- vim.notify(vim.inspect(opts.ensure_installed))
-			-- local already_installed = require("nvim-treesitter.config").installed_parsers()
-			-- vim.notify(vim.inspect(already_installed))
+			---@param buf integer
+			---@param language string
+			local function treesitter_try_attach(buf, language)
+				if not vim.api.nvim_buf_is_valid(buf) then
+					return
+				end
+
+				local ok, added = pcall(vim.treesitter.language.add, language)
+				if not ok or added == false then
+					return
+				end
+
+				pcall(vim.treesitter.start, buf, language)
+
+				local has_indent_query = pcall(function()
+					return vim.treesitter.query.get(language, "indents") ~= nil
+				end) and vim.treesitter.query.get(language, "indents") ~= nil
+
+				if has_indent_query then
+					vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+				end
+			end
+
+			-- Track in-flight installs so we never re-enter the blocking wait path
+			local installing = {} ---@type table<string, boolean>
+
+			---@param buf integer
+			---@param language string
+			local function ensure_and_attach(buf, language)
+				local installed = ts.get_installed("parsers")
+				if vim.tbl_contains(installed, language) then
+					treesitter_try_attach(buf, language)
+					return
+				end
+
+				-- Already compiling this language — attach later isn't critical
+				if installing[language] then
+					return
+				end
+
+				local available = ts.get_available()
+				if not vim.tbl_contains(available, language) then
+					-- Might still work if parser exists outside nvim-treesitter
+					treesitter_try_attach(buf, language)
+					return
+				end
+
+				installing[language] = true
+				ts.install(language):await(function()
+					installing[language] = nil
+					treesitter_try_attach(buf, language)
+				end)
+			end
+
+			-- Attach as filetypes open (install missing in background only)
+			vim.api.nvim_create_autocmd("FileType", {
+				group = vim.api.nvim_create_augroup("kickstart-treesitter", { clear = true }),
+				callback = function(args)
+					local language = vim.treesitter.language.get_lang(args.match)
+					if language then
+						ensure_and_attach(args.buf, language)
+					end
+				end,
+			})
+
+			-- Prefetch curated parsers after UI is ready (async, limited concurrency)
+			vim.api.nvim_create_autocmd("VimEnter", {
+				group = vim.api.nvim_create_augroup("kickstart-treesitter-prefetch", { clear = true }),
+				once = true,
+				callback = function()
+					vim.schedule(function()
+						if vim.fn.executable("tree-sitter") == 0 then
+							vim.notify(
+								"tree-sitter CLI not found — parsers won't compile. Install with: brew install tree-sitter",
+								vim.log.levels.WARN,
+								{ title = "nvim-treesitter" }
+							)
+							return
+						end
+
+						local installed = ts.get_installed("parsers")
+						local missing = vim.tbl_filter(function(lang)
+							return not vim.tbl_contains(installed, lang)
+						end, ensure)
+
+						if #missing == 0 then
+							return
+						end
+
+						-- Low concurrency keeps UI responsive during compile
+						ts.install(missing, { max_jobs = 2, summary = true })
+					end)
+				end,
+			})
 		end,
 	},
 }

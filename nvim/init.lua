@@ -1,11 +1,18 @@
 -- Hello friends, and welcome to my Neovim setup.
 -- Please use this file as a reference, and don't copy it directly.
 -- It's heavily tailored to my personal preferences.
+-- Base: kickstart.nvim (modularized + custom plugins).
+
+-- Enable faster startup by caching compiled Lua modules
+vim.loader.enable()
 
 -- Set <space> as the leader key
 -- Must happen before plugins are loaded (otherwise wrong leader will be used)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
+
+-- Set to true if you have a Nerd Font installed and selected in the terminal
+vim.g.have_nerd_font = false
 
 -- Install lazy.nvim, a plugin manager
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -29,6 +36,7 @@ vim.opt.rtp:prepend(lazypath)
 require("options")
 require("keymaps")
 require("aucmds")
+require("filetypes")
 
 -- Setup lazy.nvim plugins
 require("lazy").setup("plugins", {

@@ -1,44 +1,45 @@
 -- Make line numbers default
-vim.opt.number = true
-vim.opt.relativenumber = true
+vim.o.number = true
+-- Relative line numbers for jumping
+vim.o.relativenumber = true
 
--- Wider guicorsor
-vim.opt.guicursor = "n-v-c:block,i:ver45"
+-- Wider guicursor
+vim.o.guicursor = "n-v-c:block,i:ver45"
 
 -- Enable mouse mode, can be useful for resizing splits for example!
-vim.opt.mouse = "a"
+vim.o.mouse = "a"
 
 -- Don't show the mode, since it's already in the status line
-vim.opt.showmode = false
+vim.o.showmode = false
 
 -- Sync clipboard between OS and Neovim.
 -- Schedule the setting after `UiEnter` because it can increase startup-time.
 vim.schedule(function()
-	vim.opt.clipboard = "unnamedplus"
+	vim.o.clipboard = "unnamedplus"
 end)
 
 -- Enable break indent
-vim.opt.breakindent = true
+vim.o.breakindent = true
 
--- Save undo history
-vim.opt.undofile = true
+-- Enable undo/redo changes even after closing and reopening a file
+vim.o.undofile = true
 
 -- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
+vim.o.ignorecase = true
+vim.o.smartcase = true
 
 -- Keep signcolumn on by default
-vim.opt.signcolumn = "yes"
+vim.o.signcolumn = "yes"
 
 -- Decrease update time
-vim.opt.updatetime = 250
+vim.o.updatetime = 250
 
 -- Decrease mapped sequence wait time
-vim.opt.timeoutlen = 300
+vim.o.timeoutlen = 300
 
 -- Configure how new splits should be opened
-vim.opt.splitright = true
-vim.opt.splitbelow = true
+vim.o.splitright = true
+vim.o.splitbelow = true
 
 -- Backup
 vim.o.backup = true
@@ -47,33 +48,34 @@ vim.o.writebackup = true
 vim.o.backupcopy = "yes"
 
 -- Tab width
-vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.softtabstop = 4
+vim.o.tabstop = 4
+vim.o.shiftwidth = 4
+vim.o.softtabstop = 4
 
 -- Indentation
-vim.opt.autoindent = true
-vim.opt.cindent = true
+vim.o.autoindent = true
+vim.o.cindent = true
 
 -- Wrap
-vim.opt.wrap = true
-vim.opt.breakindent = true
-vim.opt.showbreak = string.rep(" ", 3) -- Make it so that long lines wrap smartly
-vim.opt.linebreak = true
+vim.o.wrap = true
+vim.o.showbreak = string.rep(" ", 3) -- Make it so that long lines wrap smartly
+vim.o.linebreak = true
 
 -- Sets how neovim will display certain whitespace characters in the editor.
--- vim.opt.list = true
--- vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+-- Uncomment if you want visible tabs/trails (kickstart default).
+-- vim.o.list = true
+-- vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
 -- Preview substitutions live, as you type!
-vim.opt.inccommand = "split"
+vim.o.inccommand = "split"
 
 -- Don't show which line your cursor is on
-vim.opt.cursorline = false
+vim.o.cursorline = false
 
 -- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 10
+vim.o.scrolloff = 10
 
 -- If performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
 -- instead raise a dialog asking if you wish to save the current file(s)
-vim.opt.confirm = false
+-- Kickstart enables this; left off here on purpose.
+vim.o.confirm = false
