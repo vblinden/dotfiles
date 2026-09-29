@@ -9,6 +9,11 @@ kubeshop() {
   echo "KUBECONFIG set to: $KUBECONFIG"
 }
 
+kubepersonal() {
+  export KUBECONFIG="$HOME/Code/kube/personal.yml"
+  echo "KUBECONFIG set to: $KUBECONFIG"
+}
+
 # mkdir + cd
 mkd() {
   mkdir -p "$@" && cd "${@: -1}"

@@ -1,0 +1,30 @@
+#!/bin/sh
+# Point the running tmux server at the Grok theme for the current OS appearance.
+set -eu
+
+script=$0
+if [ -L "$script" ]; then
+	link=$(readlink "$script")
+	case "$link" in
+	/*) script=$link ;;
+	*) script="$(CDPATH= cd "$(dirname "$script")" && pwd)/$link" ;;
+	esac
+fi
+root=$(CDPATH= cd "$(dirname "$script")/.." && pwd)
+
+mode=$(sh "$root/scripts/appearance")
+case "$mode" in
+light | dark) ;;
+*) mode=dark ;;
+esac
+
+file="$HOME/.config/tmux/grok-${mode}.conf"
+if [ ! -f "$file" ]; then
+	file="$root/tmux/grok-${mode}.conf"
+fi
+
+if ! tmux info >/dev/null 2>&1; then
+	exit 0
+fi
+
+tmux source-file "$file"

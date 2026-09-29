@@ -42,3 +42,9 @@
 
 [rerere]
 	enabled = true
+[credential "https://origin.cursor.com/git"]
+	helper = 
+	helper = !/Users/vblinden/.local/share/cursor/origin/2026.08.12-15-48-05-9267aba/origin credential-helper
+[credential "https://origin.cursor.com"]
+	helper = 
+	helper = !/Users/vblinden/.local/share/cursor/origin/2026.08.12-15-48-05-9267aba/origin credential-helper

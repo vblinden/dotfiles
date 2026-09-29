@@ -84,6 +84,13 @@ fi
 rm -rf "$HOME/.tmux.conf"
 ln -s "$DOTFILES/tmux/tmux.conf" "$HOME/.tmux.conf"
 
+mkdir -p "$HOME/.config/tmux" "$HOME/.local/bin"
+ln -sfn "$DOTFILES/tmux/grok-dark.conf" "$HOME/.config/tmux/grok-dark.conf"
+ln -sfn "$DOTFILES/tmux/grok-light.conf" "$HOME/.config/tmux/grok-light.conf"
+ln -sfn "$DOTFILES/scripts/appearance" "$HOME/.local/bin/appearance"
+ln -sfn "$DOTFILES/scripts/appearance-watch" "$HOME/.local/bin/appearance-watch"
+ln -sfn "$DOTFILES/scripts/tmux-theme" "$HOME/.local/bin/tmux-theme"
+
 mkdir -p "$HOME/.local/bin"
 rm -rf "$HOME/.local/bin/t"
 ln -s "$DOTFILES/scripts/t" "$HOME/.local/bin/t"
@@ -95,6 +102,9 @@ ln -s "$DOTFILES/scripts/phpu" "$HOME/.local/bin/phpu"
 chmod +x "$DOTFILES/scripts/t"
 chmod +x "$DOTFILES/scripts/phpr"
 chmod +x "$DOTFILES/scripts/phpu"
+chmod +x "$DOTFILES/scripts/appearance"
+chmod +x "$DOTFILES/scripts/appearance-watch"
+chmod +x "$DOTFILES/scripts/tmux-theme"
 
 mkdir -p "$HOME/.config/nvim"
 rm -rf "$HOME/.config/nvim"

@@ -18,4 +18,6 @@ fork_secondary_model = "grok-build"
 yolo = false
 compact_mode = false
 permission_mode = "always-approve"
-theme = "groknight"
+theme = "auto"
+auto_dark_theme = "groknight"
+auto_light_theme = "grokday"

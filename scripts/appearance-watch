@@ -1,0 +1,50 @@
+#!/bin/sh
+# Keep tmux colors in step with the OS appearance. One process per user.
+# Exits when the tmux server goes away so a later session can start a new one.
+set -eu
+
+script=$0
+if [ -L "$script" ]; then
+	link=$(readlink "$script")
+	case "$link" in
+	/*) script=$link ;;
+	*) script="$(CDPATH= cd "$(dirname "$script")" && pwd)/$link" ;;
+	esac
+fi
+root=$(CDPATH= cd "$(dirname "$script")/.." && pwd)
+cache_dir="${XDG_CACHE_HOME:-$HOME/.cache}"
+lockdir="$cache_dir/grok-appearance-watch.lock"
+mkdir -p "$cache_dir"
+
+if ! mkdir "$lockdir" 2>/dev/null; then
+	old=$(cat "$lockdir/pid" 2>/dev/null || true)
+	if [ -n "$old" ] && kill -0 "$old" 2>/dev/null; then
+		exit 0
+	fi
+	rm -rf "$lockdir"
+	mkdir "$lockdir" 2>/dev/null || exit 0
+fi
+
+echo $$ >"$lockdir/pid"
+trap 'rm -rf "$lockdir"' EXIT INT TERM
+
+prev=""
+while true; do
+	if ! tmux info >/dev/null 2>&1; then
+		exit 0
+	fi
+	mode=$(sh "$root/scripts/appearance")
+	case "$mode" in
+	light | dark) ;;
+	*) mode=dark ;;
+	esac
+	if [ "$mode" != "$prev" ]; then
+		theme="$HOME/.config/tmux/grok-${mode}.conf"
+		if [ ! -f "$theme" ]; then
+			theme="$root/tmux/grok-${mode}.conf"
+		fi
+		tmux source-file "$theme"
+		prev=$mode
+	fi
+	sleep 2
+done

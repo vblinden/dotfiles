@@ -14,3 +14,4 @@ AGENTS.md
 .cursor/
 .cursorignore
 .phpactor.json
+.agents/

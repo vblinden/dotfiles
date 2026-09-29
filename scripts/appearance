@@ -1,0 +1,47 @@
+#!/bin/sh
+# Print "dark" or "light" from the OS appearance.
+# GROK_APPEARANCE=dark|light overrides detection.
+set -eu
+
+case "${GROK_APPEARANCE:-}" in
+dark | light)
+	printf '%s\n' "$GROK_APPEARANCE"
+	exit 0
+	;;
+esac
+
+os=$(uname -s)
+if [ "$os" = Darwin ]; then
+	# AppleInterfaceStyle exists only while the system is in Dark mode.
+	if defaults read -g AppleInterfaceStyle 2>/dev/null | grep -q Dark; then
+		echo dark
+	else
+		echo light
+	fi
+	exit 0
+fi
+
+if command -v gsettings >/dev/null 2>&1; then
+	scheme=$(gsettings get org.gnome.desktop.interface color-scheme 2>/dev/null || true)
+	case "$scheme" in
+	*prefer-dark*)
+		echo dark
+		exit 0
+		;;
+	*prefer-light*)
+		echo light
+		exit 0
+		;;
+	esac
+	gtk=$(gsettings get org.gnome.desktop.interface gtk-theme 2>/dev/null || true)
+	case "$gtk" in
+	*[Dd]ark*)
+		echo dark
+		exit 0
+		;;
+	esac
+	echo light
+	exit 0
+fi
+
+echo dark

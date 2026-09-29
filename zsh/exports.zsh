@@ -1,8 +1,8 @@
-# GrokNight ls colors (override oh-my-zsh defaults)
-# LSCOLORS = BSD/macOS ls (-G); LS_COLORS = GNU ls / eza / tree / fd / etc.
-export CLICOLOR=1
-export LSCOLORS="FxExcxdxCxegedabagacad"
-export LS_COLORS="di=1;38;2;187;154;247:ln=1;38;2;122;162;247:so=38;2;26;188;156:pi=38;2;224;175;104:ex=1;38;2;158;206;106:bd=1;38;2;122;162;247:cd=1;38;2;122;162;247:su=1;38;2;247;118;142:sg=1;38;2;224;175;104:tw=1;38;2;158;206;106:ow=1;38;2;224;175;104:or=1;38;2;247;118;142:mi=1;38;2;247;118;142:*.md=38;2;200;200;200:*.json=38;2;224;175;104:*.yml=38;2;224;175;104:*.yaml=38;2;224;175;104:*.toml=38;2;224;175;104:*.php=38;2;187;154;247:*.py=38;2;158;206;106:*.rs=38;2;122;162;247:*.go=38;2;122;162;247:*.ts=38;2;122;162;247:*.tsx=38;2;122;162;247:*.js=38;2;224;175;104:*.jsx=38;2;224;175;104:*.sh=38;2;158;206;106:*.zsh=38;2;158;206;106:*.lua=38;2;122;162;247"
+# Directory colors follow the OS appearance (GrokNight / GrokDay).
+# The prompt theme applies them; this covers the case where that ran too early.
+if typeset -f grok_apply_theme >/dev/null; then
+  grok_apply_theme --force
+fi
 
 # History settings.
 HISTFILE=$HOME/.zsh_history

@@ -59,3 +59,13 @@ autoload -Uz compinit && compinit -C
 # <<< grok installer <<<
 
 export PATH="$HOME/.local/bin:$PATH"
+
+# bun completions
+[ -s "/Users/vblinden/.bun/_bun" ] && source "/Users/vblinden/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# Turso
+export PATH="$PATH:/Users/vblinden/.turso"
